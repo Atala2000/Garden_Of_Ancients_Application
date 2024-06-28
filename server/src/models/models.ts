@@ -2,7 +2,9 @@ import { Types } from "mysql2";
 import { type } from "os";
 import { Sequelize, DataTypes } from "sequelize";
 
-const sequelize = new Sequelize('mysql://kiddie:StrongPass123!@localhost:33061/goa');
+const sequelize = new Sequelize(
+  "mysql://kiddie:StrongPass123!@localhost:33061/goa"
+);
 
 // const test = async () => {
 //   try {
@@ -15,28 +17,21 @@ const sequelize = new Sequelize('mysql://kiddie:StrongPass123!@localhost:33061/g
 
 // test();
 
-const User = sequelize.define('User',{
-    email: {type: DataTypes.STRING, 
-        allowNull: true,
-    }, 
-    phone_no: {type: DataTypes.BIGINT,
-        allowNull: true,
-    },
-    }
-)
+const User = sequelize.define("User", {
+  email: { type: DataTypes.STRING, allowNull: true },
+  phone_no: { type: DataTypes.BIGINT, allowNull: true },
+});
 
 const Rooms = sequelize.define("Rooms", {
-    adult_price: {type: DataTypes.FLOAT,
-        allowNull: false,
-    },
-    child_price: {type: DataTypes.FLOAT, allowNull: false}
-})
+  adult_price: { type: DataTypes.FLOAT, allowNull: false },
+  child_price: { type: DataTypes.FLOAT, allowNull: false },
+});
+//test
 
 const Conference = sequelize.define("Conference", {
-    conference_price: {type: DataTypes.FLOAT, allowNull: false}
-})
-
+  conference_price: { type: DataTypes.FLOAT, allowNull: false },
+});
 
 const PaymentHistory = sequelize.define("PaymentHistory", {
-    time: {type: DataTypes.DATE, allowNull: false}
-})
+  time: { type: DataTypes.DATE, allowNull: false },
+});
