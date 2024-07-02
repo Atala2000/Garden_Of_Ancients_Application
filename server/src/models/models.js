@@ -4,7 +4,7 @@ import { type } from "os";
 import { Sequelize, DataTypes } from "sequelize";
 
 const sequelize = new Sequelize(
-  "mysql://kiddie:StrongPass123!@localhost:3306/goa"
+  "mysql://kiddie:StrongPass123!@localhost:33061/goa"
 );
 
  const test = async () => {
@@ -47,3 +47,5 @@ const PaymentHistory = sequelize.define("PaymentHistory", {
     console.log('All models were synchronized successfully.');
 }
 )();
+
+export { User, Rooms, Conference, PaymentHistory };
