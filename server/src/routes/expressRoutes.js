@@ -3,6 +3,6 @@ import { calcPrice } from "../controllers/controller.js";
 
 const router = express.Router();
 
-router.get('/getPrices', calcPrice);
+router.post('/getPrices', calcPrice);
 
-export { router }
+export default router;
