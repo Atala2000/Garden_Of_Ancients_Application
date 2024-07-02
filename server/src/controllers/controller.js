@@ -1,6 +1,5 @@
-import {Request, Response} from 'express';
-import { calculatePrice } from '../services/calc.services';
-import { User, Rooms, Conference, PaymentHistory } from '../models/models';
+import {calculatePrice} from '../services/calc.services.js';
+import { User, Rooms, Conference, PaymentHistory } from '../models/models.js';
 import Joi from 'joi';
 
 export const calcPrice = async (req, res) => {
