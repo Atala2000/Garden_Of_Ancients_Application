@@ -1,4 +1,6 @@
 import express from 'express';
+import { router } from './routes/expressRoutes.js';
+
 
 const app = express();
 app.use(express.json());
