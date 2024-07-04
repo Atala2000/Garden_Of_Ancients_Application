@@ -1,6 +1,7 @@
 import {calculatePrice} from '../services/calc.services.js';
 import { User, Rooms, Conference, PaymentHistory } from '../models/models.js';
 import Joi from 'joi';
+import { error } from 'console';
 
 export const calcPrice = async (req, res) => {
 let { accomodation, adultCount, childCount, period } = req.body;
@@ -42,4 +43,81 @@ console.log(totalPrice);
 res.status(200).json(totalPrice);
 }
 
+export const SignUp = async (req, res) => {
+    const {useremail, userpassword, phone_number} = req.body;
+
+    const userInfo = {
+        useremail,
+        userpassword,
+        phone_number
+    }
+
+    const schema = Joi.object({
+        useremail : Joi.string().trim().email().required(),
+        userpassword : Joi.string().min(8).required(),
+        phone_number: Joi.string().min(10).max(10).required()
+    });
+
+    const result = schema.validate(userInfo);
+    if(result.error){
+        return res.status(400).send(result.error.details[0].message);
+    }
+
+    await User.create({
+        email: useremail,
+        phone_no: phone_number,
+        password: userpassword
+    });
+    req.session.loggedin = true;
+    req.session.useremail = useremail;
+    /*req.session.sessionCart = {
+        currentCart: [],
+        totalPrice
+    }*/
+    res.status(200).json();
+
+}
+
+export const Login = async (req, res) => {
+    const {useremail, userpassword} = req.body;
+
+    const userInfo = {
+        useremail,
+        userpassword
+    }
+
+    const schema = Joi.object({
+        useremail: Joi.string().trim().email().required(),
+        userpassword: Joi.string().min(8).required()
+    })     
+
+    const result = schema.validate(userInfo);
+    if(result.error){
+        return res.status(400).send(result.error.details[0].message);
+    }
+    
+    await User.findOne({
+        where: {
+            email: useremail,
+            password: userpassword
+        }
+    });
+    req.session.loggedin = true;
+    req.session.useremail = useremail;
+    /*req.session.sessionCart = {
+        currentCart: [],
+        totalPrice: totalvalue
+    }*/
+    res.status(200).json({"message" : "User logged in successfully!"});
+
+}
+
+export const Logout = async (req, res) => {
+    req.session.destroy((err) => {
+        if(err){
+            return res.status(400).json();
+        }
+        res.status(200).json({"message" : "User logged out successfully!"});
+    });
+}
 

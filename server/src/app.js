@@ -1,8 +1,14 @@
 import express from 'express';
 import calcPriceRouter from './routes/expressRoutes.js';
+import session from 'express-session';
 
 
 const app = express();
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}))
 app.use(express.json());
 app.use('/api', calcPriceRouter);
 
