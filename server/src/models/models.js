@@ -1,5 +1,5 @@
 import mysql from "mysql2";
-const {Types} = mysql;
+const { Types } = mysql;
 import { type } from "os";
 import { Sequelize, DataTypes } from "sequelize";
 
@@ -7,27 +7,29 @@ const sequelize = new Sequelize(
   "mysql://kiddie:StrongPass123!@localhost:3306/goa"
 );
 
- /*const test = async () => {
-   try {
-     await sequelize.authenticate();
-     console.log("Connection has been established successfully.");
-   } catch (error) {
-     console.error("Unable to connect to the database:", error);
-   }
- };
+/*const test = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("Connection has been established successfully.");
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+};
 
- test();*/
+test();*/
 
- 
+
 
 const User = sequelize.define("User", {
-  email: { type: DataTypes.STRING, allowNull: true },
+  email: { type: DataTypes.STRING, allowNull: false, unique: true },
   phone_no: { type: DataTypes.BIGINT, allowNull: true },
+  password: { type: DataTypes.STRING, allowNull: false },
 });
 
 const Rooms = sequelize.define("Rooms", {
   adult_price: { type: DataTypes.FLOAT, allowNull: false },
   child_price: { type: DataTypes.FLOAT, allowNull: false },
+
 });
 
 
@@ -43,8 +45,8 @@ const PaymentHistory = sequelize.define("PaymentHistory", {
 });
 
 (async () => {
-    await sequelize.sync(); // Sync all defined models to the database
-    console.log('All models were synchronized successfully.');
+  await sequelize.sync(); // Sync all defined models to the database
+  console.log('All models were synchronized successfully.');
 }
 )();
 
