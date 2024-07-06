@@ -1,5 +1,6 @@
 // utils/paypal.js
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
+import { Buffer } from 'buffer';
 
 const CLIENT_ID = 'Your-PayPal-Client-ID';
 const CLIENT_SECRET = 'Your-PayPal-Client-Secret';
@@ -66,4 +67,4 @@ const captureOrder = async (orderID) => {
   }
 };
 
-module.exports = { getAccessToken, createOrder, captureOrder };
+export { getAccessToken, createOrder, captureOrder };
