@@ -14,4 +14,14 @@ function calculatePrice(accommodation, adultCount, childCount, adultPrice, child
     return total;
 }
 
-export {calculatePrice};
+
+
+function calculateTotalPrice(cart){
+    let totalPrice = 0;
+    cart.forEach((item, index) => {
+        totalPrice += cart[index].price
+    });
+    return totalPrice;
+}
+
+export {calculatePrice, calculateTotalPrice};

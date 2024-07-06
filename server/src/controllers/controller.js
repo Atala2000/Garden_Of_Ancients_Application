@@ -1,7 +1,10 @@
-import {calculatePrice} from '../services/calc.services.js';
+import {calculatePrice, calculateTotalPrice} from '../services/calc.services.js';
 import { User, Rooms, Conference, PaymentHistory } from '../models/models.js';
 import Joi from 'joi';
+import bcrypt from 'bcrypt';
 import { error } from 'console';
+
+
 
 export const calcPrice = async (req, res) => {
 let { accomodation, adultCount, childCount, period } = req.body;
@@ -17,7 +20,7 @@ const schema = Joi.object({
     accomodation : Joi.string().required(),
     adultCount : Joi.number().required(),
     childCount : Joi.number(),
-    period: Joi.number()
+    period: Joi.number().required()
 });
 
 const result = schema.validate(booking);
@@ -63,17 +66,23 @@ export const SignUp = async (req, res) => {
         return res.status(400).send(result.error.details[0].message);
     }
 
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hashedPassword = await bcrypt.hash(userpassword, salt);
+
     await User.create({
         email: useremail,
         phone_no: phone_number,
-        password: userpassword
+        password: hashedPassword
     });
     req.session.loggedin = true;
     req.session.useremail = useremail;
-    /*req.session.sessionCart = {
-        currentCart: [],
-        totalPrice
-    }*/
+    if (!req.session.sessionCart) {
+        req.session.sessionCart = {
+            currentCart: [],
+            totalPrice: calculateTotalPrice([]) // Pass an empty array initially
+        };
+    }
     res.status(200).json();
 
 }
@@ -96,18 +105,24 @@ export const Login = async (req, res) => {
         return res.status(400).send(result.error.details[0].message);
     }
     
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hashedPassword = await bcrypt.hash(userpassword, salt);
+
     await User.findOne({
         where: {
             email: useremail,
-            password: userpassword
+            password: hashedPassword
         }
     });
     req.session.loggedin = true;
     req.session.useremail = useremail;
-    /*req.session.sessionCart = {
-        currentCart: [],
-        totalPrice: totalvalue
-    }*/
+    if (!req.session.sessionCart) {
+        req.session.sessionCart = {
+            currentCart: [],
+            totalPrice: calculateTotalPrice([]) // Pass an empty array initially
+        };
+    }
     res.status(200).json({"message" : "User logged in successfully!"});
 
 }
@@ -121,3 +136,38 @@ export const Logout = async (req, res) => {
     });
 }
 
+export const SessionCart = (req, res) => {
+    const user = req.session.useremail;
+    const {accomodation, adultCount, childCount, period, price} = req.body;
+
+    const bookings = {
+        user,
+        accomodation,
+        adultCount,
+        childCount,
+        period,
+        price
+    }
+
+    const schema = Joi.object({
+        user: Joi.string().trim().email().required(),
+        accomodation: Joi.string().required(),
+        adultCount: Joi.number().required(),
+        childCount: Joi.number(),
+        period: Joi.number().required(),
+        price : Joi.number().required()
+    });
+
+    const result = schema.validate(bookings);
+    if(result.error){
+        return res.status(400).send(result.error.details[0].message);
+    }
+
+    req.session.sessionCart.currentCart.push(bookings);
+    const totalPrice = calculateTotalPrice(req.session.sessionCart.currentCart);
+    
+    res.status(200).json({
+        cart : req.session.sessionCart.currentCart,
+        totalPrice
+    });
+}

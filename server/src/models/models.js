@@ -4,7 +4,7 @@ import { type } from "os";
 import { Sequelize, DataTypes } from "sequelize";
 
 const sequelize = new Sequelize(
-  "mysql://kiddie:StrongPass123!@localhost:33061/goa"
+  "mysql://kiddie:StrongPass123!@localhost:3306/goa"
 );
 
 /*const test = async () => {
