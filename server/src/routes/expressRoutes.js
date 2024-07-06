@@ -7,7 +7,7 @@ router.post('/getPrices', calcPrice);
 router.post('/signup', SignUp);
 router.post('/login', Login);
 router.get('/logout', Logout);
-app.post('/create-order', createOrderController);
-app.post('/capture-order', captureOrderController);
+router.post('/create-order', createOrderController);
+router.post('/capture-order', captureOrderController);
 
 export default router;
