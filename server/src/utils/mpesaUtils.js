@@ -1,4 +1,5 @@
-const fetch = require('node-fetch');
+import process from 'process';
+import { Buffer } from 'buffer';
 
 const getAccessToken = async () => {
     const consumerKey = process.env.MPESA_CONSUMER_KEY;
@@ -71,3 +72,5 @@ const processPayment = async (phone, amount) => {
         console.error('Error processing payment:', error);
     }
 }
+
+export {getAccessToken, processPayment}
