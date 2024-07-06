@@ -1,6 +1,7 @@
-import {calculatePrice} from '../services/calc.services.js';
+import {calculatePrice, calculateTotalPrice} from '../services/calc.services.js';
 import { User, Rooms, Conference, PaymentHistory } from '../models/models.js';
 import Joi from 'joi';
+import bcrypt from 'bcrypt'
 import { error } from 'console';
 
 export const calcPrice = async (req, res) => {
@@ -133,3 +134,38 @@ export const Logout = async (req, res) => {
     });
 }
 
+export const SessionCart = (req, res) => {
+    const user = req.session.useremail;
+    const {accomodation, adultCount, childCount, period, price} = req.body;
+    
+    const bookings = {
+    user,
+    accomodation,
+    adultCount,
+    childCount,
+    period,
+    price
+    }
+    
+    const schema = Joi.object({
+    user: Joi.string().trim().email().required(),
+    accomodation: Joi.string().required(),
+    adultCount: Joi.number().required(),
+    childCount: Joi.number(),
+    period: Joi.number().required(),
+    price : Joi.number().required()
+    });
+    
+    const result = schema.validate(bookings);
+    if(result.error){
+    return res.status(400).send(result.error.details[0].message);
+    }
+    
+    req.session.sessionCart.currentCart.push(bookings);
+    const totalPrice = calculateTotalPrice(req.session.sessionCart.currentCart);
+   
+    res.status(200).json({
+        cart : req.session.sessionCart.currentCart,
+        totalPrice
+    });
+    }
