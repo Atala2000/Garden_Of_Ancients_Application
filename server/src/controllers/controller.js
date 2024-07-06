@@ -1,7 +1,7 @@
 import {calculatePrice} from '../services/calc.services.js';
-import { User, Rooms, Conference, PaymentHistory } from '../models/models.js';
+import { User, Rooms, Conference} from '../models/models.js';
 import Joi from 'joi';
-import { error } from 'console';
+import { captureOrder, createOrder } from '../utils/paypalUtils.js';
 
 export const calcPrice = async (req, res) => {
 let { accomodation, adultCount, childCount, period } = req.body;
