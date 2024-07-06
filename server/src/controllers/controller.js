@@ -1,7 +1,8 @@
-import {calculatePrice} from '../services/calc.services.js';
-import { User, Rooms, Conference, PaymentHistory } from '../models/models.js';
+import {calculatePrice, calculateTotalPrice} from '../services/calc.services.js';
+import { User, Rooms, Conference} from '../models/models.js';
 import Joi from 'joi';
-import { error } from 'console';
+import { createOrder,  captureOrder} from '../utils/paypalUtils.js';
+import bcrypt from 'bcrypt';
 
 export const calcPrice = async (req, res) => {
 let { accomodation, adultCount, childCount, period } = req.body;
