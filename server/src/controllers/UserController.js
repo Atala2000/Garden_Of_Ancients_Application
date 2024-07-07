@@ -3,6 +3,12 @@ import Joi from "joi";
 import { calculateTotalPrice } from '../services/calc.services.js';
 import { User } from '../models/models.js';
 
+/**
+ * Sign up a new user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The response object.
+ */
 export const SignUp = async (req, res) => {
     const { useremail, userpassword, phone_number } = req.body;
 
@@ -44,6 +50,12 @@ export const SignUp = async (req, res) => {
 
 }
 
+/**
+ * Logs in a user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The response object.
+ */
 export const Login = async (req, res) => {
     const { useremail, userpassword } = req.body;
 
@@ -84,6 +96,13 @@ export const Login = async (req, res) => {
 
 }
 
+
+/**
+ * Logs out a user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The response object.
+ */
 export const Logout = async (req, res) => {
     req.session.destroy((err) => {
         if (err) {
@@ -93,6 +112,12 @@ export const Logout = async (req, res) => {
     });
 }
 
+/**
+ * Adds a cart to the session.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The response object.
+ */
 export const SessionCart = (req, res) => {
     const user = req.session.useremail;
     const { accomodation, adultCount, childCount, period, price } = req.body;
