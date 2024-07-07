@@ -1,5 +1,9 @@
 import express from "express";
-import { Login, Logout, SignUp, calcPrice, createOrderController, captureOrderController, SessionCart } from "../controllers/controller.js";
+import { calcPrice } from "../controllers/PriceController";
+import { Login, Logout, SessionCart, SignUp } from "../controllers/UserController";
+import { captureOrderController, createOrderController } from "../controllers/PaymentContoller";
+
+
 
 const router = express.Router();
 
