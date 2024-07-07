@@ -1,48 +1,7 @@
-import { calculatePrice, calculateTotalPrice } from '../services/calc.services.js';
-import { User, Rooms, Conference, PaymentHistory } from '../models/models.js';
-import Joi from 'joi';
-import { createOrder, captureOrder } from '../utils/paypalUtils.js';
 import bcrypt from 'bcrypt';
-
-export const calcPrice = async (req, res) => {
-    let { accomodation, adultCount, childCount, period } = req.body;
-
-    const booking = {
-        accomodation,
-        adultCount,
-        childCount,
-        period
-    }
-
-    const schema = Joi.object({
-        accomodation: Joi.string().required(),
-        adultCount: Joi.number().required(),
-        childCount: Joi.number(),
-        period: Joi.number().required()
-    });
-
-    const result = schema.validate(booking);
-    if (result.error) {
-        return res.status(400).send(result.error.details[0].message);
-    }
-
-    const adultPriceValue = await Rooms.findAll({
-        attributes: ['adult_price']
-    });
-    const adultPrice = adultPriceValue[0].adult_price;
-    const childPriceValue = await Rooms.findAll({
-        attributes: ['child_price']
-    });
-    const childPrice = childPriceValue[0].child_price;
-    const conferencePriceValue = await Conference.findAll({
-        attributes: ['conference_price']
-    });
-    const conferencePrice = conferencePriceValue[0].conference_price;
-
-    const totalPrice = calculatePrice(accomodation, adultCount, childCount, adultPrice, childPrice, conferencePrice, period);
-    console.log(totalPrice);
-    res.status(200).json(totalPrice);
-}
+import Joi from "joi";
+import { calculateTotalPrice } from '../services/calc.services';
+import { User } from '../models/models';
 
 export const SignUp = async (req, res) => {
     const { useremail, userpassword, phone_number } = req.body;
@@ -169,28 +128,3 @@ export const SessionCart = (req, res) => {
         totalPrice
     });
 }
-
-
-
-export const createOrderController = async (req, res) => {
-    const { totalPrice } = req.body;
-    try {
-        const orderData = await createOrder(totalPrice);
-        res.json(orderData);
-    } catch (error) {
-        console.error('Error creating order:', error);
-        res.status(500).send('Error creating order');
-    }
-};
-
-export const captureOrderController = async (req, res) => {
-    const { orderID } = req.body;
-    try {
-        const captureData = await captureOrder(orderID);
-        res.json(captureData);
-    } catch (error) {
-        console.error('Error capturing order:', error);
-        res.status(500).send('Error capturing order');
-    }
-};
-
