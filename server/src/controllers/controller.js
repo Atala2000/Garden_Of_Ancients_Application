@@ -1,51 +1,51 @@
-import {calculatePrice, calculateTotalPrice} from '../services/calc.services.js';
-import { User, Rooms, Conference, PaymentHistory} from '../models/models.js';
+import { calculatePrice, calculateTotalPrice } from '../services/calc.services.js';
+import { User, Rooms, Conference, PaymentHistory } from '../models/models.js';
 import Joi from 'joi';
-import { createOrder,  captureOrder} from '../utils/paypalUtils.js';
+import { createOrder, captureOrder } from '../utils/paypalUtils.js';
 import bcrypt from 'bcrypt';
 
 export const calcPrice = async (req, res) => {
-let { accomodation, adultCount, childCount, period } = req.body;
+    let { accomodation, adultCount, childCount, period } = req.body;
 
-const booking = {
-    accomodation,
-    adultCount,
-    childCount,
-    period
-}
+    const booking = {
+        accomodation,
+        adultCount,
+        childCount,
+        period
+    }
 
-const schema = Joi.object({
-    accomodation : Joi.string().required(),
-    adultCount : Joi.number().required(),
-    childCount : Joi.number(),
-    period: Joi.number().required()
-});
+    const schema = Joi.object({
+        accomodation: Joi.string().required(),
+        adultCount: Joi.number().required(),
+        childCount: Joi.number(),
+        period: Joi.number().required()
+    });
 
-const result = schema.validate(booking);
-if(result.error){
-    return res.status(400).send(result.error.details[0].message);
-}
+    const result = schema.validate(booking);
+    if (result.error) {
+        return res.status(400).send(result.error.details[0].message);
+    }
 
-const adultPriceValue = await Rooms.findAll({
-    attributes : ['adult_price']
-});
-const adultPrice = adultPriceValue[0].adult_price;
-const childPriceValue = await Rooms.findAll({
-    attributes : ['child_price']
-});
-const childPrice = childPriceValue[0].child_price;
-const conferencePriceValue = await Conference.findAll({
-    attributes : ['conference_price']
-});
-const conferencePrice = conferencePriceValue[0].conference_price;
+    const adultPriceValue = await Rooms.findAll({
+        attributes: ['adult_price']
+    });
+    const adultPrice = adultPriceValue[0].adult_price;
+    const childPriceValue = await Rooms.findAll({
+        attributes: ['child_price']
+    });
+    const childPrice = childPriceValue[0].child_price;
+    const conferencePriceValue = await Conference.findAll({
+        attributes: ['conference_price']
+    });
+    const conferencePrice = conferencePriceValue[0].conference_price;
 
-const totalPrice = calculatePrice(accomodation, adultCount, childCount, adultPrice, childPrice, conferencePrice, period);
-console.log(totalPrice);
-res.status(200).json(totalPrice);
+    const totalPrice = calculatePrice(accomodation, adultCount, childCount, adultPrice, childPrice, conferencePrice, period);
+    console.log(totalPrice);
+    res.status(200).json(totalPrice);
 }
 
 export const SignUp = async (req, res) => {
-    const {useremail, userpassword, phone_number} = req.body;
+    const { useremail, userpassword, phone_number } = req.body;
 
     const userInfo = {
         useremail,
@@ -54,13 +54,13 @@ export const SignUp = async (req, res) => {
     }
 
     const schema = Joi.object({
-        useremail : Joi.string().trim().email().required(),
-        userpassword : Joi.string().min(8).required(),
+        useremail: Joi.string().trim().email().required(),
+        userpassword: Joi.string().min(8).required(),
         phone_number: Joi.string().min(10).max(10).required()
     });
 
     const result = schema.validate(userInfo);
-    if(result.error){
+    if (result.error) {
         return res.status(400).send(result.error.details[0].message);
     }
 
@@ -86,7 +86,7 @@ export const SignUp = async (req, res) => {
 }
 
 export const Login = async (req, res) => {
-    const {useremail, userpassword} = req.body;
+    const { useremail, userpassword } = req.body;
 
     const userInfo = {
         useremail,
@@ -96,13 +96,13 @@ export const Login = async (req, res) => {
     const schema = Joi.object({
         useremail: Joi.string().trim().email().required(),
         userpassword: Joi.string().min(8).required()
-    })     
+    })
 
     const result = schema.validate(userInfo);
-    if(result.error){
+    if (result.error) {
         return res.status(400).send(result.error.details[0].message);
     }
-    
+
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(userpassword, salt);
@@ -121,76 +121,76 @@ export const Login = async (req, res) => {
             totalPrice: calculateTotalPrice([]) // Pass an empty array initially
         };
     }
-    res.status(200).json({"message" : "User logged in successfully!"});
+    res.status(200).json({ "message": "User logged in successfully!" });
 
 }
 
 export const Logout = async (req, res) => {
     req.session.destroy((err) => {
-        if(err){
+        if (err) {
             return res.status(400).json();
         }
-        res.status(200).json({"message" : "User logged out successfully!"});
+        res.status(200).json({ "message": "User logged out successfully!" });
     });
 }
 
 export const SessionCart = (req, res) => {
     const user = req.session.useremail;
-    const {accomodation, adultCount, childCount, period, price} = req.body;
-     
+    const { accomodation, adultCount, childCount, period, price } = req.body;
+
     const bookings = {
-    user,
-    accomodation,
-    adultCount,
-    childCount,
-    period,
-    price
+        user,
+        accomodation,
+        adultCount,
+        childCount,
+        period,
+        price
     }
-     
+
     const schema = Joi.object({
-    user: Joi.string().trim().email().required(),
-    accomodation: Joi.string().required(),
-    adultCount: Joi.number().required(),
-    childCount: Joi.number(),
-    period: Joi.number().required(),
-    price: Joi.number().required()
+        user: Joi.string().trim().email().required(),
+        accomodation: Joi.string().required(),
+        adultCount: Joi.number().required(),
+        childCount: Joi.number(),
+        period: Joi.number().required(),
+        price: Joi.number().required()
     });
-     
+
     const result = schema.validate(bookings);
-    if(result.error){
-    return res.status(400).send(result.error.details[0].message);
+    if (result.error) {
+        return res.status(400).send(result.error.details[0].message);
     }
-     
+
     req.session.sessionCart.currentCart.push(bookings);
     const totalPrice = calculateTotalPrice(req.session.sessionCart.currentCart);
-    
+
     res.status(200).json({
-    cart : req.session.sessionCart.currentCart,
-    totalPrice
+        cart: req.session.sessionCart.currentCart,
+        totalPrice
     });
-    }
-    
-    
+}
+
+
 
 export const createOrderController = async (req, res) => {
-    const { amount } = req.body;
+    const { totalPrice } = req.body;
     try {
-      const orderData = await createOrder(amount);
-      res.json(orderData);
+        const orderData = await createOrder(totalPrice);
+        res.json(orderData);
     } catch (error) {
-      console.error('Error creating order:', error);
-      res.status(500).send('Error creating order');
+        console.error('Error creating order:', error);
+        res.status(500).send('Error creating order');
     }
-  };
-  
+};
+
 export const captureOrderController = async (req, res) => {
     const { orderID } = req.body;
     try {
-      const captureData = await captureOrder(orderID);
-      res.json(captureData);
+        const captureData = await captureOrder(orderID);
+        res.json(captureData);
     } catch (error) {
-      console.error('Error capturing order:', error);
-      res.status(500).send('Error capturing order');
+        console.error('Error capturing order:', error);
+        res.status(500).send('Error capturing order');
     }
-  };
-  
+};
+
