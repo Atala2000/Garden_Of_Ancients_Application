@@ -1,10 +1,15 @@
 // utils/paypal.js
 import fetch from 'node-fetch';
 import { Buffer } from 'buffer';
+import dotenv from 'dotenv';
+import process from 'process';
 
-const CLIENT_ID = 'Your-PayPal-Client-ID';
-const CLIENT_SECRET = 'Your-PayPal-Client-Secret';
-const PAYPAL_API = 'https://api-m.sandbox.paypal.com'; // Use 'https://api-m.paypal.com' for live
+dotenv.config();
+
+const CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
+const CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
+const PAYPAL_API = process.env.PAYPAL_API;
+
 
 const getAccessToken = async () => {
   const auth = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
