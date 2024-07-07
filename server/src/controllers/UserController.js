@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import Joi from "joi";
-import { calculateTotalPrice } from '../services/calc.services';
-import { User } from '../models/models';
+import { calculateTotalPrice } from '../services/calc.services.js';
+import { User } from '../models/models.js';
 
 export const SignUp = async (req, res) => {
     const { useremail, userpassword, phone_number } = req.body;

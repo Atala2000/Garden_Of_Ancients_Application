@@ -1,4 +1,4 @@
-import { createOrder, captureOrder } from "../utils/paypalUtils";
+import { createOrder, captureOrder } from "../utils/paypalUtils.js";
 
 export const createOrderController = async (req, res) => {
     const { totalPrice } = req.body;

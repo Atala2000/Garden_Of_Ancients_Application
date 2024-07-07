@@ -1,7 +1,7 @@
 import express from "express";
-import { calcPrice } from "../controllers/PriceController";
-import { Login, Logout, SessionCart, SignUp } from "../controllers/UserController";
-import { captureOrderController, createOrderController } from "../controllers/PaymentContoller";
+import { calcPrice } from "../controllers/PriceController.js";
+import { Login, Logout, SessionCart, SignUp } from "../controllers/UserController.js";
+import { captureOrderController, createOrderController } from "../controllers/PaymentController.js";
 
 
 
