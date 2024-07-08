@@ -46,7 +46,7 @@ export const SignUp = async (req, res) => {
             totalPrice: calculateTotalPrice([]) // Pass an empty array initially
         };
     }
-    res.status(200).json();
+    res.status(200).json({ 'message': 'User registered successfully' });
 
 }
 
