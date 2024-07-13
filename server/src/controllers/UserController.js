@@ -147,9 +147,13 @@ export const SessionCart = (req, res) => {
 
     req.session.sessionCart.currentCart.push(bookings);
     const totalPrice = calculateTotalPrice(req.session.sessionCart.currentCart);
-
+    req.session.sessionCart.totalPrice = totalPrice;
     res.status(200).json({
         cart: req.session.sessionCart.currentCart,
         totalPrice
     });
+}
+
+export const viewSession = (req, res) => {
+    res.status(200).send(req.session)
 }
