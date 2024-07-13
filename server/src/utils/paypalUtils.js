@@ -78,15 +78,22 @@ const createOrder = async (totalAmount, cart) => {
             description: 'Payments for accommodation',
             items: createOrderObject(cart),
             amount: {
-              currency_code: 'KES',
-              value: totalAmount
+              currency_code: 'USD',
+              value: totalAmount.toFixed(2),
+              breakdown: {
+                item_total: {
+                    currency_code: "USD",
+                    value: totalAmount.toFixed(2)
+                }
+              }
             }
           }
         ],
         application_context: {
           return_url: 'http://localhost:3000/complete-order',
           cancel_url: 'http://localhost:3000/cancel-order',
-          user_action: 'PAY_NOW'
+          user_action: 'PAY_NOW',
+          "shipping_preference": "NO_SHIPPING"
         }
       })
     });
@@ -112,18 +119,18 @@ const createOrder = async (totalAmount, cart) => {
  */
 const createOrderObject = (cartArray) => {
   return cartArray.map((item) => {
-    if (!item.accommodation || !item.price) {
+    if (!item.accomodation || !item.price) {
       throw new Error('Missing required item data: accommodation or price');
     }
 
     const quantity = item.quantity || 1;
 
     return {
-      name: item.accommodation,
+      name: item.accomodation,
       quantity,
-      description: `Payment for ${quantity} ${item.accommodation}(s)`,
+      description: `Payment for ${quantity} ${item.accomodation}(s)`,
       unit_amount: {
-        currency_code: 'KES',
+        currency_code: 'USD',
         value: item.price
       }
     };
