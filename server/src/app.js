@@ -1,9 +1,11 @@
+
 import express from 'express';
 import process from 'process';
 import calcPriceRouter from './routes/expressRoutes.js';
 import session from 'express-session';
 
 
+console.log(process.env.PAYPAL_API);
 const app = express();
 app.use(session({
     secret: 'secret',

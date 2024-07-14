@@ -1,9 +1,9 @@
 import { btoa } from 'buffer'; // Assuming Node.js environment
-import dotenv from 'dotenv';
 import process from 'process';
 import fetch from 'node-fetch';
-
+import dotenv  from 'dotenv';
 dotenv.config();
+
 
 // Error handling and validation for environment variables
 /**
