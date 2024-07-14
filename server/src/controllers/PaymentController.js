@@ -1,9 +1,8 @@
 import { captureOrder, createOrder } from "../utils/paypalUtils.js";
 
 export const createOrderController = async (req, res) => {
-    const { totalPrice } = req.session.sessionCart.totalPrice;
     try {
-        const orderData = await createOrder(totalPrice, req.session.cart);
+        const orderData = await createOrder(req.session.sessionCart.totalPrice, req.session.sessionCart.currentCart);
         res.json(orderData);
     } catch (error) {
         console.error('Error creating order:', error);
