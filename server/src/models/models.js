@@ -38,6 +38,8 @@ const Conference = sequelize.define("Conference", {
 
 
 const PaymentHistory = sequelize.define("PaymentHistory", {
+  email: { type: DataTypes.STRING, allowNull: false},
+  amount: {type: DataTypes.FLOAT, allowNull: false},
   time: { type: DataTypes.DATE, allowNull: false },
 });
 
