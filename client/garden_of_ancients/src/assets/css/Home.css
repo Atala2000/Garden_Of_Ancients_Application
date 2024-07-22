@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Seasons';
+    src: url('../fonts/The\ Seasons\ Bold.ttf') format('truetype'),
+         url('../fonts/The\ Seasons\ Bold.woff') format('woff'),
+         url('../fonts/The\ Seasons\ Bold.woff2') format('woff2');
+
+         font-style: normal;
+}
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../fonts/Quicksand.ttf') format('truetype'),
+         url('../fonts/Quicksand.woff') format('woff'),
+         url('../fonts/Quicksand.woff2') format('woff2');
+
+         font-style: normal;
+}
+
+.mid-home{
+    height: 650px;
+    width: 100%;
+    display: flex;
+}
+
+.mid-par{
+    height: 100%;
+    width: 50%;
+    border-bottom: 1px solid white;
+    box-shadow: 2px 2px 10px rgba(200, 200, 200, 0.5);
+}
+
+.mid-par h1{
+    margin-top: 200px;
+    margin-left: 30px;
+    font-family: 'Seasons', sans-serif;
+}
+
+.mid-par p{
+    margin-left: 30px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.mid-pic{
+    height: 100%;
+    width: 50%;
+    background-image: url('../buzz.jpg');
+    background-size: cover;
+}
+
+.heading-card{
+    font-family: 'Seasons', sans-serif;
+    width: 100%;
+    text-align: center;
+}

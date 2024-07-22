@@ -43,11 +43,19 @@
     margin-left: 10px;
 }
 
+.card-par:hover{
+    color: blue;
+    cursor: pointer;
+}
+
 .card-collection{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 200px;
+    margin-top: 0;
+    max-width: 75%;
+    margin-left: 150px;
 }
 
 

@@ -31,7 +31,7 @@ export const Footer = () => {
                 <p>0710943451</p>
                 <p>info.garrenofancients@co.ke</p>
             </div>
-            <div className="avalability">
+            <div className="availability">
                 <h4>Office Hours</h4>
                 <p>Monnday to Friday<br/>
                 9.00am to 5.00pm

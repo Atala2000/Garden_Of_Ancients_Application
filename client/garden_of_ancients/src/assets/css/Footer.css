@@ -7,6 +7,14 @@
          font-style: normal;
 }
 
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../fonts/Quicksand.ttf') format('truetype'),
+         url('../fonts/Quicksand.woff') format('woff'),
+         url('../fonts/Quicksand.woff2') format('woff2');
+
+         font-style: normal;
+}
 
 .footer {
     background-color: #947F57;
@@ -48,4 +56,18 @@
     height: 35px;
 }
 
+.address{
+font-family: 'Quicksand', sans-serif;
+}
 
+.address h4{
+    font-weight: bolder;
+}
+
+.availability{
+font-family: 'Quicksand', sans-serif;
+}
+
+.availability h4{
+    font-weight: bolder;
+}
