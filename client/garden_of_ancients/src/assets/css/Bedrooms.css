@@ -22,7 +22,7 @@
     margin-left: 50%;
 }
 
-.bedroom-body h3{
+.bed-head{
     margin-top: 60px;
     font-size: 32px;
     font-family: 'Seasons', sans-serif;
@@ -30,7 +30,7 @@
     text-align: center;
 }
 
-.bedroom-body p{
+.bed-body{
     margin-top: 60px;
     text-align: center;
     font-size: 18px;

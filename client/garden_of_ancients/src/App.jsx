@@ -9,6 +9,7 @@ import { Herbarium } from './components/Herbarium.jsx'
 import { Hives } from './components/Hives.jsx'
 import { Bookpage } from './components/bookPage.jsx'
 import { Errormessage } from './components/404.jsx'
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function App() {
   const [count, setCount] = useState(0)

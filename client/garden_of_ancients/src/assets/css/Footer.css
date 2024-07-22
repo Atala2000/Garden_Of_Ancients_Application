@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Seasons';
+    src: url('../fonts/The\ Seasons\ Bold.ttf') format('truetype'),
+         url('../fonts/The\ Seasons\ Bold.woff') format('woff'),
+         url('../fonts/The\ Seasons\ Bold.woff2') format('woff2');
+
+         font-style: normal;
+}
+
+
+.footer {
+    background-color: #947F57;
+    padding: 20px 0;
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 230px;
+    width: 70%;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 20px;
+    transform: translateX(-50%);
+    margin-left: 50%;
+    color: white;
+}
+
+.title h2{
+    font-family: 'Seasons', sans-serif;
+    font-size: 32px;
+    margin-top: 65px;
+}
+
+.socials{
+    color: white;
+    display: flex;
+    width: 250px;
+    height: auto;
+    justify-content: space-between;
+}
+
+.footer .socials a svg {
+    width: 35px;
+    height: 35px;
+}
+
+

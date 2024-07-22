@@ -22,7 +22,7 @@
     margin-left: 50%;
 }
 
-.conference-body h3{
+.conference-heading{
     margin-top: 60px;
     font-size: 32px;
     font-family: 'Seasons', sans-serif;
@@ -30,7 +30,7 @@
     text-align: center;
 }
 
-.conference-body p{
+.con-paragraph{
     margin-top: 60px;
     text-align: center;
     font-size: 18px;
