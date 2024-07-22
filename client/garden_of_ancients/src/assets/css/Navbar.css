@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../fonts/Quicksand.ttf') format('truetype'),
+         url('../fonts/Quicksand.woff') format('woff'),
+         url('../fonts/Quicksand.woff2') format('woff2');
+
+         font-style: normal;
+}
+
 .navbar {
     display: flex;
     justify-content: center;
@@ -10,6 +19,8 @@
 
 .navbar a{
     color: white;
+    font-size: 19px;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .navbar a:hover{
@@ -18,3 +29,4 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
+

@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route} from "react-router-dom"
-import { Home } from './components/Pages/Home.jsx'
-import { About } from './components/Pages/About.jsx'
-import { Bedrooms } from './components/Pages/Bedrooms.jsx'
-import { Conferences } from './components/Pages/Conferences.jsx'
-import { Herbarium } from './components/Pages/Herbarium.jsx'
-import { Hives } from './components/Pages/Hives.jsx'
-import { Bookpage } from './components/Pages/bookPage.jsx'
-import { Errormessage } from './components/Pages/404.jsx'
+import { Home } from './components/Home.jsx'
+import { About } from './components/About.jsx'
+import { Bedrooms } from './components/Bedrooms.jsx'
+import { Conferences } from './components/Conferences.jsx'
+import { Herbarium } from './components/Herbarium.jsx'
+import { Hives } from './components/Hives.jsx'
+import { Bookpage } from './components/bookPage.jsx'
+import { Errormessage } from './components/404.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
