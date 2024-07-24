@@ -2,10 +2,13 @@ import React from "react";
 import '../assets/css/Heading.css';
 
 
-export const Heading = ({text}) => {
+export const Heading = ({Text, text}) => {
     return(
+        <>
         <h1 className="heading-style">
-            {text}
+            {Text}
         </h1>
+        <h2 className="sub-style">{text}</h2>
+        </>
     )
 }

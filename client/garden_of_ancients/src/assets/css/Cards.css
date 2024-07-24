@@ -15,7 +15,6 @@
 }
 
 .card-pic{
-    background-image: url('../plague.jpg');
     background-size: cover;
     height: 242px;
     width: 100%;

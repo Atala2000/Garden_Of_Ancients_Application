@@ -16,6 +16,15 @@
    color: white;
 }
 
+.sub-style{
+   font-family: 'Seasons', sans-serif;
+   font-size: 40px;
+   color: white;
+   transform: translateX(-25%);
+   margin-left: 25%;
+   margin-top: 0;
+}
+
 
 
 
