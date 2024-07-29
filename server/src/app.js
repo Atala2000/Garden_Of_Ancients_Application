@@ -3,6 +3,7 @@ import express from 'express';
 import process from 'process';
 import calcPriceRouter from './routes/expressRoutes.js';
 import session from 'express-session';
+import cors from 'cors';
 
 
 console.log(process.env.PAYPAL_API);
@@ -13,6 +14,7 @@ app.use(session({
     saveUninitialized: true
 }))
 app.use(express.json());
+app.use(cors());
 app.use('/api', calcPriceRouter);
 
 

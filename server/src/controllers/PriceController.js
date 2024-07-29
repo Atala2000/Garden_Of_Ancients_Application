@@ -4,17 +4,17 @@ import Joi from 'joi';
 
 
 export const calcPrice = async (req, res) => {
-    let { accomodation, adultCount, childCount, period } = req.body;
+    let { accommodation, adultCount, childCount, startDate, endDate, period } = req.body;
 
     const booking = {
-        accomodation,
+        accommodation,
         adultCount,
         childCount,
         period
     }
 
     const schema = Joi.object({
-        accomodation: Joi.string().required(),
+        accommodation: Joi.string().required(),
         adultCount: Joi.number().required(),
         childCount: Joi.number(),
         period: Joi.number().required()
@@ -38,7 +38,7 @@ export const calcPrice = async (req, res) => {
     });
     const conferencePrice = conferencePriceValue[0].conference_price;
 
-    const totalPrice = calculatePrice(accomodation, adultCount, childCount, adultPrice, childPrice, conferencePrice, period);
+    const totalPrice = calculatePrice(accommodation, adultCount, childCount, adultPrice, childPrice, conferencePrice, period);
     console.log(totalPrice);
     res.status(200).json(totalPrice);
 }
