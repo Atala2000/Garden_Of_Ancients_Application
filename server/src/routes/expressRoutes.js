@@ -1,6 +1,6 @@
 import express from "express";
 import { calcPrice } from "../controllers/PriceController.js";
-import { Login, Logout, SessionCart, SignUp, viewSession } from "../controllers/UserController.js";
+import { Login, Logout, SessionCart, SignUp, viewSession, CheckSession } from "../controllers/UserController.js";
 import { captureOrderController, createOrderController, getPaymentHistory } from "../controllers/PaymentController.js";
 
 
@@ -11,6 +11,7 @@ router.post('/getPrices', calcPrice);
 router.post('/signup', SignUp);
 router.post('/login', Login);
 router.get('/logout', Logout);
+router.get('/checkSession', CheckSession);
 router.get('/session', viewSession)
 router.post('/postCart', SessionCart);
 router.post('/createOrder', createOrderController);

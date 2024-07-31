@@ -112,6 +112,15 @@ export const Logout = async (req, res) => {
     });
 }
 
+export const CheckSession = (req, res) => {
+    if(req.session.useremail){
+        res.json({ isAuthenticated : true})
+    }
+    else{
+        res.json({isAuthenticated : false})
+    }
+}
+
 /**
  * Adds a cart to the session.
  * @param {Object} req - The request object.
