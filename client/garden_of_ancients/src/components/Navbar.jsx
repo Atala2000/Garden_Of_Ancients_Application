@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../assets/css/Navbar.css';
 
 export const Navbar = () => <div className='navbar'>
+        <Link to="/">HOME</Link>
         <Link to="/About Us">ABOUT US</Link>
         <Link to="/Bedrooms">BEDROOMS</Link>
         <Link to="/Conferences">CONFERENCES</Link>

@@ -69,26 +69,26 @@ export const Bookpage = () => {
             <Navbar/>
             <div className='book-form'>
                 <form onSubmit={handleSubmit} className='booking-form'>
-                    <select name="accommodation" className='dropdown' value={formData.accommodation} onChange={handleChange}>
+                    <select name="accommodation" className='dropdown' value={formData.accommodation} onChange={handleChange} required>
                         <option value=""></option>
                         <option value="Room">Room</option>
                         <option value="Conference">Conference</option>
                     </select>
                     <div className='people-count'>
                         <label htmlFor="adult-count" className='people-pos'>ADULT</label>
-                        <input type="number"  id='adult-count' className='people-pos' name='adultCount' value={formData.adultCount} onChange={handleChange} min='0' max='5' />
+                        <input type="number"  id='adult-count' className='people-pos' name='adultCount' value={formData.adultCount} onChange={handleChange} min='0' max='5' required/>
                     </div>
                     <div className='people-count'>
                         <label htmlFor="child-count" className='people-pos'>CHILDREN</label>
-                        <input type="number" id='child-count' className='people-pos' name='childCount' value={formData.childCount} onChange={handleChange} min='0' max='5' />
+                        <input type="number" id='child-count' className='people-pos' name='childCount' value={formData.childCount} onChange={handleChange} min='0' max='5' required/>
                     </div>
                     <div className='date-count'>
                         <label htmlFor="start-date"></label>
-                        <input type="date" id='start-date' value={formData.startDate} onChange={handleChange} name='startDate' />
+                        <input type="date" id='start-date' value={formData.startDate} onChange={handleChange} name='startDate' required/>
                     </div>
                     <div className='date-count'>
                         <label htmlFor="end-date"></label>
-                        <input type="date" id='end-date' value={formData.endDate} onChange={handleChange} name='endDate' />
+                        <input type="date" id='end-date' value={formData.endDate} onChange={handleChange} name='endDate' required/>
                     </div>
                     <button type='submit' className='submit-btn' onClick={handleSubmit}>
                         <ArrowRight/>

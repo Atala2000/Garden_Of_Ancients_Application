@@ -11,6 +11,7 @@ import { Cards } from "./Cards";
 import { Footer } from "./Footer";
 import '../assets/css/Home.css'
 import { Heading } from "./Heading";
+import { Account } from "./Account";
 
 export const Home = () => {
 
@@ -18,7 +19,13 @@ export const Home = () => {
         <>
             <Hero backgroundImage={imageURL}>
                 <Navbar/>
-                <Heading Text="Garden Of Ancients" text="Resort"></Heading>
+                <div style={{display : "flex"}}>
+                    <div>
+                <h1 className="home-heading">Garden of Ancients</h1>
+                <h2 className="sub-head">Resort</h2>
+                </div>
+                <Account/>
+                </div>
                 <Booking/>
             </Hero>
             <div className="home-body">

@@ -11,7 +11,7 @@ export const Pricemodal = ({isOpen, onClose, formData, priceData}) => {
             <p>END DATE : {formData.endDate}</p>
             <p>PERIOD : {formData.period} days</p>
             <p className="modal-price">PRICE : {priceData} Ksh</p>
-            <button onClick={onClose} className="modal-btn">ACCEPT</button>
+            <button onClick={onClose} className="modal-btn">ADD TO CART</button>
         </div>
     )
 }

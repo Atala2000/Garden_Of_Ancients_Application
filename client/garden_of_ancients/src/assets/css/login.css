@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../fonts/Quicksand.ttf') format('truetype'),
+         url('../fonts/Quicksand.woff') format('woff'),
+         url('../fonts/Quicksand.woff2') format('woff2');
+
+         font-style: normal;
+}
+
+.login-input{
+transform: translateX(-50%);
+height: 40px;
+width: 300px;
+margin-left: 50%;
+margin-top: 20px;
+}
+
+.login-submit{
+    margin-top: 20px;
+    height: 52px;
+    width: 150px;
+    font-family: 'Quicksand', sans-serif;
+    transform: translateX(-50%);
+    margin-left: 50%;
+}
+
+.sign-link{
+    text-align: center;
+    margin-top: 30px;
+}
