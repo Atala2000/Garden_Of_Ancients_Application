@@ -11,7 +11,7 @@ export const Login = ({setShowComponent}) => {
                     <input type="text" name="userpassword" placeholder="Enter Your Password" className="login-input" required/><br />
                     <input type="submit" className="login-submit" value="LOG IN"/>
                 </form>
-                <p className="sign-link" onClick={() => setShowComponent(true)}>Back to login</p>
+                <p className="sign-link" onClick={() => setShowComponent(true)}>Don't have an account?</p>
             </>
         )
     

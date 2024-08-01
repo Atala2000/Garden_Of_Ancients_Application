@@ -5,3 +5,24 @@ width: 300px;
 margin-left: 50%;
 margin-top: 20px;
 }
+
+.sign-submit{
+    margin-top: 20px;
+    height: 52px;
+    width: 150px;
+    font-family: 'Quicksand', sans-serif;
+    transform: translateX(-50%);
+    margin-left: 50%;
+}
+
+.login-link{
+    text-align: center;
+    margin-top: 30px;
+    color: black;
+    font-family: "Quicksand", sans-serif;
+}
+
+.login-link:hover{
+    cursor: pointer;
+    color: blue;
+}

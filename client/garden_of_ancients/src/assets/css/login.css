@@ -27,4 +27,11 @@ margin-top: 20px;
 .sign-link{
     text-align: center;
     margin-top: 30px;
+    color: black;
+    font-family: "Quicksand", sans-serif;
+}
+
+.sign-link:hover{
+    color: blue;
+    cursor: pointer;
 }
