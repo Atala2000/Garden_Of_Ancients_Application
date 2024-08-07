@@ -18,6 +18,7 @@ export const SignUp = async (req, res) => {
         phone_number
     }
 
+
     const schema = Joi.object({
         useremail: Joi.string().trim().email().required(),
         userpassword: Joi.string().min(8).required(),
@@ -46,7 +47,7 @@ export const SignUp = async (req, res) => {
             totalPrice: calculateTotalPrice([]) // Pass an empty array initially
         };
     }
-    res.status(200).json({ 'message': 'User registered successfully' });
+    res.status(200).json({ 'message': 'User registered successfully', useremail : req.session });
 
 }
 
@@ -92,7 +93,7 @@ export const Login = async (req, res) => {
             totalPrice: calculateTotalPrice([]) // Pass an empty array initially
         };
     }
-    res.status(200).json({ "message": "User logged in successfully!" });
+    res.status(200).json({ "message": "User logged in successfully!", useremail : req.session });
 
 }
 
@@ -113,8 +114,10 @@ export const Logout = async (req, res) => {
 }
 
 export const CheckSession = (req, res) => {
-    if(req.session.useremail){
-        res.json({ isAuthenticated : true})
+    console.log(req.session)
+
+    if(req.session && req.session.useremail){
+        res.json({ isAuthenticated : true, useremail : req.session.useremail})
     }
     else{
         res.json({isAuthenticated : false})
