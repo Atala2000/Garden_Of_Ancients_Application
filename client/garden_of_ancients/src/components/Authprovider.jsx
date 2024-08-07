@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import axios from 'axios'
 
 const AuthContext = createContext();
 
@@ -9,11 +10,12 @@ export const Authprovider = ({children}) => {
     useEffect(() => {
         const checkSession = async () => {
             const response = await fetch('http://localhost:5500/api/checkSession', {
+                method : 'GET',
                 credentials : 'include'
             });
             const data = await response.json();
             setIsAuthneticated(data.isAuthenticated);
-            console.log('isAuthenticated:', isAuthenticated);
+            console.log('isAuthenticated:', data.isAuthenticated);
             setIsLoading(false);
         }
         checkSession();

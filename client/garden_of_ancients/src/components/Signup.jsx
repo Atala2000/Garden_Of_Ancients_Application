@@ -16,6 +16,7 @@ export const Signup = ({setShowComponent}) => {
         const response = await fetch('http://localhost:5500/api/signup', {
             method : 'POST',
             headers : {'Content-Type' : 'application/json'},
+            credentials : 'include',
             body : JSON.stringify(formData)
         })
         const signAnswer = await response.json();
