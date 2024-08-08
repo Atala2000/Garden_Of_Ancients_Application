@@ -132,20 +132,22 @@ export const CheckSession = (req, res) => {
  */
 export const SessionCart = (req, res) => {
     const user = req.session.useremail;
-    const { accomodation, adultCount, childCount, period, price } = req.body;
+    const { accommodation, adultCount, childCount, period, price } = req.body;
 
     const bookings = {
         user,
-        accomodation,
+        accommodation,
         adultCount,
         childCount,
         period,
         price
     }
 
+    console.log(bookings);
+
     const schema = Joi.object({
         user: Joi.string().trim().email().required(),
-        accomodation: Joi.string().required(),
+        accommodation: Joi.string().required(),
         adultCount: Joi.number().required(),
         childCount: Joi.number(),
         period: Joi.number().required(),
@@ -160,6 +162,14 @@ export const SessionCart = (req, res) => {
     req.session.sessionCart.currentCart.push(bookings);
     const totalPrice = calculateTotalPrice(req.session.sessionCart.currentCart);
     req.session.sessionCart.totalPrice = totalPrice;
+    res.status(200).json({
+        cart: req.session.sessionCart.currentCart,
+        totalPrice
+    });
+}
+
+export const Viewcart = (req, res) => {
+    const totalPrice = calculateTotalPrice(req.session.sessionCart.currentCart);
     res.status(200).json({
         cart: req.session.sessionCart.currentCart,
         totalPrice
