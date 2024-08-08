@@ -31,6 +31,7 @@ export const Login = ({setShowComponent}) => {
 
         return(
             <>
+                <h3 className="log-head">LOGIN TO ACCESS BOOKING PAGE</h3>
                 <form onSubmit={handleSubmit} className="login-form">
                     <input type="email" name="useremail" placeholder="Enter Your Email" className="login-input" value={formData.useremail} onChange={handleChange} required/>
                     <br/>

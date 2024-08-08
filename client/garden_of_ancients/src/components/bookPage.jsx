@@ -9,10 +9,16 @@ import '../assets/css/bookPage.css';
 import {ArrowRight} from 'react-bootstrap-icons';
 import { Pricemodal } from './priceModal'
 import differenceInDays from 'date-fns/differenceInDays'
+import { Bookmodal } from './bookModal'
 
 export const Bookpage = () => {
 
+    const [showCart, setShowCart] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [bookingData, setBookingData] = useState({
+        cart : [],
+        totalPrice : 0
+    });
     const [formData, setFormData] = useState({
         accommodation : '',
         adultCount : '',
@@ -50,18 +56,48 @@ export const Bookpage = () => {
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify(formData)
         });
-    const priceData = await response.json();
+    const price = await response.json();
         if(!response.ok){
             console.log('submission failed!');
         }
-        console.log(priceData);
+        console.log(price);
         setFormData({
             ...formData,
-            priceData
+            price
         })
       
     } 
-    const handleClose = () => setShowModal(false);
+    const handleClose = async() => {
+        const updatedData = {...formData};
+        delete updatedData.startDate;
+        delete updatedData.endDate;
+        const response = await fetch('http://localhost:5500/api/postCart', {
+            method : 'POST',
+            headers : {'Content-Type' : 'application/json'},
+            body : JSON.stringify(updatedData),
+            credentials : 'include'
+        });
+        if(!response.ok){
+            console.log("Couldn't get the cart!");
+        }
+        const data = await response.json();
+        console.log(data);
+        setShowModal(false);
+    }
+
+    const handleCart = async() => {
+        setShowCart(true);
+        const response = await fetch('http://localhost:5500/api/viewCart', {
+            method : 'GET',
+            credentials : 'include'
+        });
+        if(!response.ok){
+            console.log("Could not view cart");
+        }
+        const data = await response.json();
+        setBookingData(data);
+        console.log(bookingData);
+    }
 
     return(
         <>
@@ -94,8 +130,10 @@ export const Bookpage = () => {
                         <ArrowRight/>
                     </button>
                 </form>
-                {showModal && <Pricemodal isOpen={showModal} onClose={handleClose} formData={formData} priceData={formData.priceData}/>}
+                {showModal && <Pricemodal isOpen={showModal} onClose={handleClose} formData={formData} priceData={formData.price}/>}
             </div>
+            {showCart && <Bookmodal isOpen={showModal} bookingData={bookingData}/>}
+            <button className='cartbtn' onClick={handleCart}>VIEW CART</button>
         </Hero>
         <div>
 

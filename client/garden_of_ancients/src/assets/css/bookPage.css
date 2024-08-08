@@ -59,3 +59,24 @@
     color: white;
 }
 
+.cartbtn{
+    position: absolute;
+    height: 52px;
+    width: 222px;
+    background-color: #947f57;
+    color: white;
+    border-radius: 0;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
+    bottom: 80px;
+    margin-left: 5%;
+    outline: none !important;
+}
+
+.cartbtn:hover{
+    background-color: black;
+    transition: all 0.2s ease-in-out;
+    border: 0;
+}
+

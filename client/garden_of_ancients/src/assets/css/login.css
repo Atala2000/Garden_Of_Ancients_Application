@@ -35,3 +35,10 @@ margin-top: 20px;
     color: blue;
     cursor: pointer;
 }
+
+.log-head{
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    color: black;
+    font-weight: 500;
+}
