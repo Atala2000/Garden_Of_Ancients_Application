@@ -15,17 +15,16 @@ export const Conferences = () => {
     <>
     <Hero backgroundImage={imageURL}>
         <Navbar/>
-        <Heading Text="Bedrooms: Where Comfort Meets Tranquility"></Heading>
+        <Heading Text="Events: Give a scenic flare to your events, conferences and meetings"></Heading>
         <Booking/>
     </Hero>
     <div className="conference-body">
-        <h3 className="conference-heading">Imagine waking up to lush gardens. At Garden of Ancients, our havens offer more than just a place to sleep. Explore a range of exquisitely designed bedrooms, each catering to your specific desires.</h3>
-        <p className="con-paragraph">Unwind in spacious luxury suites, featuring (mention key features, e.g., king-size beds, private balconies, soaking tubs).  Reclaim tranquility in our cozy garden cottages, perfect for (mention ideal guest for this type of room, e.g., romantic getaways, solo retreats).
-Indulge in the finest amenities, including (mention a few key amenities, e.g., plush linens, high-speed Wi-Fi, premium toiletries).  Find your perfect sanctuary at Garden of Ancients.
+        <h3 className="conference-heading">Nested in this mini ‘rain forest’ is a conference facility equipped with modern facilities to cater for your needs.</h3>
+        <p className="con-paragraph">Depending on the nature of your meeting, the facility can host 50-100 pax. The facility is surrounded with beautiful lawns and sitting areas suitable for reflective group work sessions. What about some events and activities such as family meetings, weddings, photography and video shooting?  Talk to us on any of these needs.
 </p>
 <div className="card-collection">
-<Cards cardImage={cardOne} cardHead="Standalone" cardPar="Unwind in our havens of tranquility. Explore the unique features and amenities offered by each bedroom category, designed to cater to your every need."></Cards>
-<Cards cardImage={cardTwo} cardHead="With Accommodation" cardPar="Unwind in our havens of tranquility. Explore the unique features and amenities offered by each bedroom category, designed to cater to your every need."></Cards>
+<Cards cardImage={cardOne} cardHead="Meetings" cardPar="Unwind in our havens of tranquility. Explore the unique features and amenities offered by each bedroom category, designed to cater to your every need."></Cards>
+<Cards cardImage={cardTwo} cardHead="Events" cardPar="Unwind in our havens of tranquility. Explore the unique features and amenities offered by each bedroom category, designed to cater to your every need."></Cards>
 </div>
     </div>
     <Footer/>

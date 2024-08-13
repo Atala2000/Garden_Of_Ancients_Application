@@ -10,6 +10,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     height: auto;
 }
 
@@ -20,8 +21,30 @@
     background-color: #947f57;
 }
 
+.event-drop{
+    text-align: center;
+    height: 50px;
+    width: 200px;
+    background-color: #947f57;
+}
+
+.event-drop option{
+    font-size: 15px;
+}
+
+.event-drop option[value=""] {
+    display: none;
+    font-size: 15px;
+  }
+
+.dropdown option{
+    font-size: 15px;
+}
+
+
 .dropdown option[value=""] {
     display: none;
+    font-size: 15px;
   }
 
 .people-count{

@@ -8,10 +8,15 @@ import { Footer } from './Footer'
 import '../assets/css/bookPage.css';
 import {ArrowRight} from 'react-bootstrap-icons';
 import { Pricemodal } from './priceModal'
-import differenceInDays from 'date-fns/differenceInDays'
+import differenceInDays from 'date-fns/differenceInDays';
+import differenceInHours from 'date-fns/differenceInHours';
 import { Bookmodal } from './bookModal'
+import {format} from 'date-fns';
 
 export const Bookpage = () => {
+    const todayDate = () => {
+        return format(new Date(), 'yyyy-MM-dd');
+    }
 
     const [showCart, setShowCart] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -21,10 +26,13 @@ export const Bookpage = () => {
     });
     const [formData, setFormData] = useState({
         accommodation : '',
-        adultCount : '',
-        childCount : '',
+        eventType : '',
+        adultCount : 0,
+        childCount : 0,
         startDate : '',
-        endDate : ''
+        endDate : '',
+        startTime : '',
+        endTime : ''
     })
 
     const handleChange = (e) => {
@@ -35,13 +43,22 @@ export const Bookpage = () => {
     }
 
     const calcDate = ({formData}) => {
-        const start = new Date(formData.startDate);
-        const end = new Date(formData.endDate);
-        const period = differenceInDays(end, start);
-        return period;
+        let start, end;
+       
+            start = new Date(formData.startDate);
+            end = new Date(formData.endDate);
+            const period = differenceInDays(end, start);
+            return period;
+        
     }
 
-    
+    const calcTime = () => {
+        let start, end;
+        start = new Date(`${formData.startDate}T${formData.startTime}`);
+        end = new Date(`${formData.startDate}T${formData.endTime}`);
+        const periodTime = differenceInHours(end ,start);
+        return periodTime;
+    }
     
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -49,6 +66,7 @@ export const Bookpage = () => {
         formData.adultCount = parseInt(formData.adultCount);
         formData.childCount = parseInt(formData.childCount);
         formData.period = calcDate({formData});
+        formData.periodTime = calcTime({formData});
         console.log(JSON.stringify(formData));
 
         const response = await fetch('http://localhost:5500/api/getPrices', {
@@ -74,7 +92,7 @@ export const Bookpage = () => {
         const response = await fetch('http://localhost:5500/api/postCart', {
             method : 'POST',
             headers : {'Content-Type' : 'application/json'},
-            body : JSON.stringify(updatedData),
+            body : JSON.stringify(formData),
             credentials : 'include'
         });
         if(!response.ok){
@@ -99,6 +117,9 @@ export const Bookpage = () => {
         console.log(bookingData);
     }
 
+    const isConference = formData.accommodation === 'Conference';
+    const isEducation = formData.accommodation === 'Education';
+
     return(
         <>
         <Hero backgroundImage={imageURL}>
@@ -106,31 +127,52 @@ export const Bookpage = () => {
             <div className='book-form'>
                 <form onSubmit={handleSubmit} className='booking-form'>
                     <select name="accommodation" className='dropdown' value={formData.accommodation} onChange={handleChange} required>
-                        <option value=""></option>
-                        <option value="Room">Room</option>
-                        <option value="Conference">Conference</option>
+                        <option value="" disabled selected>SERVICE</option>
+                        <option value="Education">EDUCATIONAL TOUR</option>
+                        <option value="Room">ROOM</option>
+                        <option value="Conference">CONFERENCE</option>
                     </select>
                     <div className='people-count'>
                         <label htmlFor="adult-count" className='people-pos'>ADULT</label>
                         <input type="number"  id='adult-count' className='people-pos' name='adultCount' value={formData.adultCount} onChange={handleChange} min='0' max='5' required/>
                     </div>
-                    <div className='people-count'>
-                        <label htmlFor="child-count" className='people-pos'>CHILDREN</label>
-                        <input type="number" id='child-count' className='people-pos' name='childCount' value={formData.childCount} onChange={handleChange} min='0' max='5' required/>
-                    </div>
-                    <div className='date-count'>
+                    {isConference && <select name="eventType" className='event-drop' value={formData.eventType} onChange={handleChange} required>
+                        <option value="" disabled selected>TYPE</option>
+                        <option value="Meeting">MEETING</option>
+                        <option value="Photography">PHOTOGRAPHY</option>
+                        <option value="Videography">VIDEOGRAPHY</option>
+                        <option value="Wedding">WEDDING</option>
+                    </select>}
+                    {isConference || isEducation ? <div className='date-count'>
                         <label htmlFor="start-date"></label>
                         <input type="date" id='start-date' value={formData.startDate} onChange={handleChange} name='startDate' required/>
-                    </div>
-                    <div className='date-count'>
-                        <label htmlFor="end-date"></label>
-                        <input type="date" id='end-date' value={formData.endDate} onChange={handleChange} name='endDate' required/>
-                    </div>
+                    </div>: <div className='people-count'>
+                        <label htmlFor="child-count" className='people-pos'>CHILDREN</label>
+                        <input type="number" id='child-count' className='people-pos' name='childCount' value={formData.childCount} onChange={handleChange} min='0' max='5' required/>
+                    </div>}
+                    {(isConference || isEducation) && (<div className='date-count'>
+<label htmlFor="end-date"></label>
+<input type="date" id='end-date' value={formData.endDate} onChange={handleChange} name='endDate' required/>
+</div>)}
+                    {isConference || isEducation ? <div className='date-count'>
+<label htmlFor="start-time"></label>
+<input type="time" id='start-time' value={formData.startTime} onChange={handleChange} name='startTime' required/>
+</div> : <div className='date-count'>
+<label htmlFor="start-date"></label>
+<input type="date" id='start-date' value={formData.startDate} onChange={handleChange} name='startDate' required/>
+</div>}
+                    {isConference || isEducation ? <div className='date-count'>
+<label htmlFor="end-time"></label>
+<input type="time" id='end-time' value={formData.endTime} onChange={handleChange} name='endTime' required/>
+</div> : <div className='date-count'>
+<label htmlFor="end-date"></label>
+<input type="date" id='end-date' value={formData.endDate} onChange={handleChange} name='endDate' required/>
+</div>}
                     <button type='submit' className='submit-btn' onClick={handleSubmit}>
                         <ArrowRight/>
                     </button>
                 </form>
-                {showModal && <Pricemodal isOpen={showModal} onClose={handleClose} formData={formData} priceData={formData.price}/>}
+                {showModal && <Pricemodal isOpen={showModal} accommodation={formData.accommodation} onClose={handleClose} formData={formData} priceData={formData.price} isConference={isConference}/>}
             </div>
             {showCart && <Bookmodal isOpen={showModal} bookingData={bookingData}/>}
             <button className='cartbtn' onClick={handleCart}>VIEW CART</button>
@@ -142,3 +184,6 @@ export const Bookpage = () => {
         </>
     )
 }
+
+
+

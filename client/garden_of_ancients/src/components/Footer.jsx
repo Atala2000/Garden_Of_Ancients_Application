@@ -7,7 +7,7 @@ export const Footer = () => {
         <footer className="footer">
             <div className="footer-container">
             <div className="title">
-                <h2>Garden Of Ancients</h2>
+                <h2>Garden of Ancients</h2>
                 <div className="socials">
                     <a href="">
                     <Facebook style={{color:'white'}}/>
@@ -29,7 +29,7 @@ export const Footer = () => {
                 PO Box 1753 00502
                 </p>
                 <p>0710943451</p>
-                <p>info.garrenofancients@co.ke</p>
+                <p>info.gardenofancients@co.ke</p>
             </div>
             <div className="availability">
                 <h4>Office Hours</h4>

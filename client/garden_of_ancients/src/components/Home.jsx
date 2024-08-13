@@ -38,9 +38,9 @@ export const Home = () => {
                 </div>
                 <h1 className="heading-card">What We Offer</h1>
                 <div className="card-collection">
-                <Cards cardImage={cardOne} cardHead="Bedrooms" cardPar="Unwind in our havens of tranquility. Explore the unique features and amenities offered by each bedroom category, designed to cater to your every need."></Cards>
-                <Cards cardImage={cardTwo} cardHead="Conference Facilities" cardPar="Host a productive and memorable gathering in our state-of-the-art conference rooms. Exceptional services available"></Cards>
-                <Cards cardImage={cardThree} cardHead="Herbarium" cardPar="Embark on a fragrant journey through our meticulously curated herbarium. Discover a world of medicinal and culinary plants, and delve into their historical and practical uses."></Cards>
+                <Cards cardImage={cardOne} cardHead="Recreation" cardPar="Unwind in our havens of tranquility. Explore the unique features and amenities offered by each bedroom category, designed to cater to your every need."></Cards>
+                <Cards cardImage={cardTwo} cardHead="Events" cardPar="Host a productive and memorable gathering in our state-of-the-art conference rooms. Exceptional services available"></Cards>
+                <Cards cardImage={cardThree} cardHead="Spice Enclave" cardPar="Embark on a fragrant journey through our meticulously curated herbarium. Discover a world of medicinal and culinary plants, and delve into their historical and practical uses."></Cards>
                 <Cards cardImage={cardFour} cardHead="Bee Hives" cardPar="Witness the fascinating world of beekeeping firsthand. Learn about our commitment to sustainable practices and the honey produced by our resident bees."></Cards>
                 </div>
             </div>

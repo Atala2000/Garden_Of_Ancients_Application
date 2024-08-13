@@ -9,7 +9,7 @@ export const Login = ({setShowComponent}) => {
     });
 
     const handleSubmit = async(e) => {
-        e.preventDefault();
+        
         const response = await fetch("http://localhost:5500/api/login", {
             method : 'POST', 
             headers : {"Content-Type" : "application/json"},
