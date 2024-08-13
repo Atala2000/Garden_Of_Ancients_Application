@@ -1,6 +1,6 @@
 
 
-function calculatePrice(accommodation, adultCount, childCount, adultPrice, childPrice, conferencePrice, period){
+function calculatePrice(accommodation, eventType, adultCount, childCount, adultPrice, childPrice, photographyPrice, videographyPrice, weddingPrice, conferencePrice, period, periodTime){
     
     let total;
     if(accommodation === "Room"){
@@ -8,8 +8,35 @@ function calculatePrice(accommodation, adultCount, childCount, adultPrice, child
         const totalChildPrice = childCount*childPrice*period;
         total = totalAdultPrice + totalChildPrice;
     }
-    else{
-        total = conferencePrice*period;
+    else if(accommodation === 'Conference'){
+        if(period>0){
+            if(eventType === 'Meeting'){
+        total = conferencePrice*period*periodTime;
+            }
+            else if(eventType === 'Photography'){
+                total = photographyPrice*period*periodTime;
+            }
+            else if(eventType === 'Videography'){
+                total = photographyPrice*period*periodTime;
+            }
+            else if(eventType === 'Wedding'){
+                total = photographyPrice*period*periodTime;
+            }
+        }
+        else if(period === 0){
+            if(eventType === 'Meeting'){
+            total = conferencePrice*periodTime;
+            }
+            else if(eventType === 'Photography'){
+                total = photographyPrice*periodTime;
+            }
+            else if(eventType === 'Videography'){
+                total = videographyPrice*periodTime;
+            }
+            else if(eventType === 'Wedding'){
+                total = weddingPrice*periodTime*adultCount;
+            }
+        }
     }
     return total;
 }

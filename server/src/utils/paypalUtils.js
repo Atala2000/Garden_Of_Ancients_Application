@@ -119,16 +119,16 @@ const createOrder = async (totalAmount, cart) => {
  */
 const createOrderObject = (cartArray) => {
   return cartArray.map((item) => {
-    if (!item.accomodation || !item.price) {
+    if (!item.accommodation || !item.price) {
       throw new Error('Missing required item data: accommodation or price');
     }
 
     const quantity = item.quantity || 1;
 
     return {
-      name: item.accomodation,
+      name: item.accommodation,
       quantity,
-      description: `Payment for ${quantity} ${item.accomodation}(s)`,
+      description: `Payment for ${quantity} ${item.accommodation}(s)`,
       unit_amount: {
         currency_code: 'USD',
         value: item.price

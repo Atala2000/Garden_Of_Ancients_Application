@@ -29,10 +29,19 @@ const Rooms = sequelize.define("Rooms", {
 
 });
 
+const Tour = sequelize.define("Tour", {
+  spiceGarden : {type : DataTypes.FLOAT, allowNull : false, defaultValue : 60},
+  beeGarden : {type : DataTypes.FLOAT, allowNull : false, defaultValue : 50},
+  both : {type : DataTypes.FLOAT, allowNull : false, defaultValue : 100}
+})
+
 
 
 const Conference = sequelize.define("Conference", {
-  conference_price: { type: DataTypes.FLOAT, allowNull: false },
+  conference_price: { type: DataTypes.FLOAT, allowNull: false, defaultValue : 100},
+  photography_price: {type : DataTypes.FLOAT, allowNull: false, defaultValue : 40},
+  videographu_price : {type : DataTypes.FLOAT, allowNull : false, defaultValue : 60},
+  wedding_price : {type : DataTypes.FLOAT, allowNull : false,  defaultValue : 120}
 });
 
 
@@ -40,7 +49,12 @@ const Conference = sequelize.define("Conference", {
 const PaymentHistory = sequelize.define("PaymentHistory", {
   email: { type: DataTypes.STRING, allowNull: false},
   amount: {type: DataTypes.FLOAT, allowNull: false},
-  time: { type: DataTypes.DATE, allowNull: false },
+  startDate : {type : DataTypes.DATE, allowNull : false},
+  endDate : {type : DataTypes.DATE,allowNull : false},
+  startTime : {type : DataTypes.TIME, allowNull: true},
+  endTime : {type : DataTypes.TIME, allowNull: true},
+  period : {type : DataTypes.FLOAT, allowNull : false},
+  time: { type: DataTypes.FLOAT, allowNull: true }
 });
 
 (async () => {
@@ -49,4 +63,4 @@ const PaymentHistory = sequelize.define("PaymentHistory", {
 }
 )();
 
-export { User, Rooms, Conference, PaymentHistory };
+export { User, Rooms, Conference, PaymentHistory, Tour };
