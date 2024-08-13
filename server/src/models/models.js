@@ -33,7 +33,9 @@ const Tour = sequelize.define("Tour", {
   spiceGarden : {type : DataTypes.FLOAT, allowNull : false, defaultValue : 60},
   beeGarden : {type : DataTypes.FLOAT, allowNull : false, defaultValue : 50},
   both : {type : DataTypes.FLOAT, allowNull : false, defaultValue : 100}
-})
+});
+
+
 
 
 

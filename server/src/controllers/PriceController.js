@@ -1,14 +1,15 @@
 import { calculatePrice} from '../services/calc.services.js';
-import { Rooms, Conference} from '../models/models.js';
+import { Rooms, Conference, Tour} from '../models/models.js';
 import Joi from 'joi';
 
 
 export const calcPrice = async (req, res) => {
-    let { accommodation, adultCount, childCount, startTime, endTime, startDate, endDate, period, periodTime, eventType } = req.body;
+    let { accommodation, adultCount, childCount, startTime, endTime, startDate, endDate, period, periodTime, eventType, tourType } = req.body;
 
     const booking = {
         accommodation,
         eventType,
+        tourType,
         adultCount,
         childCount,
         period,
@@ -20,6 +21,7 @@ export const calcPrice = async (req, res) => {
     const schema = Joi.object({
         accommodation: Joi.string().required(),
         eventType : Joi.string(),
+        tourType : Joi.string(),
         adultCount: Joi.number().required(),
         childCount: Joi.number(),
         period: Joi.number().required(),
@@ -47,7 +49,14 @@ export const calcPrice = async (req, res) => {
     const videographyPrice = conferencePriceValue[0].videographu_price;
     const weddingPrice = conferencePriceValue[0].wedding_price;
 
-    const totalPrice = calculatePrice(accommodation, eventType, adultCount, childCount, adultPrice, childPrice, photographyPrice, videographyPrice, weddingPrice, conferencePrice, period, periodTime);
+    const tourPriceValue = await Tour.findAll({
+        attributes : ['spiceGarden', 'beeGarden', 'both']
+    });
+
+    const spiceGardenPrice = tourPriceValue[0].spiceGarden;
+    const beeGardenPrice = tourPriceValue[0].beeGarden;
+    const fullTourPrice = tourPriceValue[0].both;
+    const totalPrice = calculatePrice(accommodation, eventType, tourType, adultCount, childCount, adultPrice, childPrice, photographyPrice, videographyPrice, weddingPrice, conferencePrice, spiceGardenPrice, beeGardenPrice, fullTourPrice, period, periodTime);
     console.log(totalPrice);
     res.status(200).json(totalPrice);
 }

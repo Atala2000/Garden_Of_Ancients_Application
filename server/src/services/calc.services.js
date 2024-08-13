@@ -1,7 +1,7 @@
 
 
-function calculatePrice(accommodation, eventType, adultCount, childCount, adultPrice, childPrice, photographyPrice, videographyPrice, weddingPrice, conferencePrice, period, periodTime){
-    
+function calculatePrice(accommodation, eventType, tourType, adultCount, childCount, adultPrice, childPrice, photographyPrice, videographyPrice, weddingPrice, conferencePrice, spiceGardenPrice, beeGardenPrice, fullTourPrice, period, periodTime){
+
     let total;
     if(accommodation === "Room"){
         const totalAdultPrice = adultCount*adultPrice*period;
@@ -35,6 +35,30 @@ function calculatePrice(accommodation, eventType, adultCount, childCount, adultP
             }
             else if(eventType === 'Wedding'){
                 total = weddingPrice*periodTime*adultCount;
+            }
+        }
+    }
+    else if(accommodation === 'Education'){
+        if(period > 0){
+            if(tourType === 'spiceEnclave'){
+                total = spiceGardenPrice*adultCount*period;
+            }
+            else if(tourType === 'beeGarden'){
+                total = beeGardenPrice*adultCount*period;
+            }
+            else if(tourType === 'fullTour'){
+                total = fullTourPrice*adultCount*period;
+            }
+        }
+        else if(period === 0){
+            if(tourType === 'spiceEnclave'){
+                total = spiceGardenPrice*adultCount;
+            }
+            else if(tourType === 'beeGarden'){
+                total = beeGardenPrice*adultCount;
+            }
+            else if(tourType === 'fullTour'){
+                total = fullTourPrice*adultCount;
             }
         }
     }
