@@ -27,6 +27,7 @@ export const Bookpage = () => {
     const [formData, setFormData] = useState({
         accommodation : '',
         eventType : '',
+        tourType : '',
         adultCount : 0,
         childCount : 0,
         startDate : '',
@@ -67,12 +68,19 @@ export const Bookpage = () => {
         formData.childCount = parseInt(formData.childCount);
         formData.period = calcDate({formData});
         formData.periodTime = calcTime({formData});
-        console.log(JSON.stringify(formData));
+        const updatedData = {...formData};
+        if(formData.accommodation === 'Conference'){
+            delete updatedData.tourType;
+        }
+        else if(formData.accommodation === 'Education'){
+            delete updatedData.eventType;
+        }
+        console.log(JSON.stringify(updatedData));
 
         const response = await fetch('http://localhost:5500/api/getPrices', {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify(formData)
+            body: JSON.stringify(updatedData)
         });
     const price = await response.json();
         if(!response.ok){
@@ -127,7 +135,7 @@ export const Bookpage = () => {
             <div className='book-form'>
                 <form onSubmit={handleSubmit} className='booking-form'>
                     <select name="accommodation" className='dropdown' value={formData.accommodation} onChange={handleChange} required>
-                        <option value="" disabled selected>SERVICE</option>
+                        <option value="" disabled>SERVICE</option>
                         <option value="Education">EDUCATIONAL TOUR</option>
                         <option value="Room">ROOM</option>
                         <option value="Conference">CONFERENCE</option>
@@ -137,11 +145,17 @@ export const Bookpage = () => {
                         <input type="number"  id='adult-count' className='people-pos' name='adultCount' value={formData.adultCount} onChange={handleChange} min='0' max='5' required/>
                     </div>
                     {isConference && <select name="eventType" className='event-drop' value={formData.eventType} onChange={handleChange} required>
-                        <option value="" disabled selected>TYPE</option>
+                        <option value="" disabled>TYPE</option>
                         <option value="Meeting">MEETING</option>
                         <option value="Photography">PHOTOGRAPHY</option>
                         <option value="Videography">VIDEOGRAPHY</option>
                         <option value="Wedding">WEDDING</option>
+                    </select>}
+                    {isEducation && <select name="tourType" className='tour-drop' value={formData.tourType} onChange={handleChange} required>
+                        <option value="" disabled>TYPE</option>
+                        <option value="spiceEnclave">SPICE ENCLAVE</option>
+                        <option value="beeGarden">BEE GARDEN</option>
+                        <option value="fullTour">FULL TOUR</option>
                     </select>}
                     {isConference || isEducation ? <div className='date-count'>
                         <label htmlFor="start-date"></label>
