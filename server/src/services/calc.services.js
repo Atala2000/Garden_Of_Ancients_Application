@@ -26,12 +26,21 @@ function calculatePrice(accommodation, eventType, tourType, adultCount, childCou
     else if(accommodation === 'Education'){
         period += 1;
         if(tourType === 'spiceEnclave'){
+            if(adultCount < 5){
+                adultCount = 5;
+            }
             total = spiceGardenPrice*adultCount*period;
         }
         else if(tourType === 'beeGarden'){
+            if(adultCount < 5){
+                adultCount = 5;
+            }
             total = beeGardenPrice*adultCount*period;
         }
         else if(tourType === 'fullTour'){
+            if(adultCount < 5){
+                adultCount = 5;
+            }
             total = fullTourPrice*adultCount*period;
         }
     }
