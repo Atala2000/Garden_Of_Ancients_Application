@@ -10,9 +10,11 @@ import { Hives } from './components/Hives.jsx'
 import { Bookpage } from './components/bookPage.jsx'
 import { Errormessage } from './components/404.jsx'
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useAuth } from './components/Authprovider.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const {isAuthenticated} = useAuth();
 
   return (
     <BrowserRouter>
@@ -23,7 +25,7 @@ function App() {
         <Route path='/Conferences' element = {<Conferences/>}/>
         <Route path='/Herbarium' element = {<Herbarium/>}/>
         <Route path='/Hives' element = {<Hives/>}/>
-        <Route path='/bookPage' element = {<Bookpage/>}/>
+        <Route path='/bookPage' element = {isAuthenticated ? <Bookpage/> : <Home/>}/>
         <Route path='/404Error' element = {<Errormessage/>}/>
       </Routes>
     </BrowserRouter> 

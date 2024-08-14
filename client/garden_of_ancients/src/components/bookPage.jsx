@@ -142,7 +142,7 @@ export const Bookpage = () => {
                     </select>
                     <div className='people-count'>
                         <label htmlFor="adult-count" className='people-pos'>ADULT</label>
-                        <input type="number"  id='adult-count' className='people-pos' name='adultCount' value={formData.adultCount} onChange={handleChange} min='0' max='5' required/>
+                        <input type="number"  id='adult-count' className='people-pos' name='adultCount' value={formData.adultCount} onChange={handleChange} min='0' max='15' required/>
                     </div>
                     {isConference && <select name="eventType" className='event-drop' value={formData.eventType} onChange={handleChange} required>
                         <option value="" disabled>TYPE</option>
@@ -162,7 +162,7 @@ export const Bookpage = () => {
                         <input type="date" id='start-date' value={formData.startDate} onChange={handleChange} name='startDate' required/>
                     </div>: <div className='people-count'>
                         <label htmlFor="child-count" className='people-pos'>CHILDREN</label>
-                        <input type="number" id='child-count' className='people-pos' name='childCount' value={formData.childCount} onChange={handleChange} min='0' max='5' required/>
+                        <input type="number" id='child-count' className='people-pos' name='childCount' value={formData.childCount} onChange={handleChange} min='0' max='15' required/>
                     </div>}
                     {(isConference || isEducation) && (<div className='date-count'>
 <label htmlFor="end-date"></label>
