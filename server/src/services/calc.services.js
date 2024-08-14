@@ -9,57 +9,30 @@ function calculatePrice(accommodation, eventType, tourType, adultCount, childCou
         total = totalAdultPrice + totalChildPrice;
     }
     else if(accommodation === 'Conference'){
-        if(period>0){
-            if(eventType === 'Meeting'){
-        total = conferencePrice*period*periodTime;
-            }
-            else if(eventType === 'Photography'){
-                total = photographyPrice*period*periodTime;
-            }
-            else if(eventType === 'Videography'){
-                total = photographyPrice*period*periodTime;
-            }
-            else if(eventType === 'Wedding'){
-                total = photographyPrice*period*periodTime;
-            }
-        }
-        else if(period === 0){
-            if(eventType === 'Meeting'){
-            total = conferencePrice*periodTime;
-            }
-            else if(eventType === 'Photography'){
-                total = photographyPrice*periodTime;
-            }
-            else if(eventType === 'Videography'){
-                total = videographyPrice*periodTime;
-            }
-            else if(eventType === 'Wedding'){
-                total = weddingPrice*periodTime*adultCount;
-            }
-        }
+        period += 1;
+        if(eventType === 'Meeting'){
+            total = conferencePrice*period*periodTime;
+                }
+                else if(eventType === 'Photography'){
+                    total = photographyPrice*period*periodTime;
+                }
+                else if(eventType === 'Videography'){
+                    total = photographyPrice*period*periodTime;
+                }
+                else if(eventType === 'Wedding'){
+                    total = photographyPrice*period*periodTime;
+                }
     }
     else if(accommodation === 'Education'){
-        if(period > 0){
-            if(tourType === 'spiceEnclave'){
-                total = spiceGardenPrice*adultCount*period;
-            }
-            else if(tourType === 'beeGarden'){
-                total = beeGardenPrice*adultCount*period;
-            }
-            else if(tourType === 'fullTour'){
-                total = fullTourPrice*adultCount*period;
-            }
+        period += 1;
+        if(tourType === 'spiceEnclave'){
+            total = spiceGardenPrice*adultCount*period;
         }
-        else if(period === 0){
-            if(tourType === 'spiceEnclave'){
-                total = spiceGardenPrice*adultCount;
-            }
-            else if(tourType === 'beeGarden'){
-                total = beeGardenPrice*adultCount;
-            }
-            else if(tourType === 'fullTour'){
-                total = fullTourPrice*adultCount;
-            }
+        else if(tourType === 'beeGarden'){
+            total = beeGardenPrice*adultCount*period;
+        }
+        else if(tourType === 'fullTour'){
+            total = fullTourPrice*adultCount*period;
         }
     }
     return total;
