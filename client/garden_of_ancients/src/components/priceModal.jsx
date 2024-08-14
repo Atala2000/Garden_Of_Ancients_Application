@@ -1,7 +1,8 @@
 import React from "react"
 import '../assets/css/priceModal.css'
 
-export const Pricemodal = ({isOpen, onClose, formData, priceData, accommodation, isConference}) => { 
+export const Pricemodal = ({isOpen, onClose, formData, priceData, accommodation, isConference, isEducation}) => { 
+    
 
 const dayCheck = () => {
     if(formData.period > 1){
@@ -25,6 +26,7 @@ const hourCheck = () => {
         <div className="modal">
             <p>ACCOMODATION : {formData.accommodation}</p>
             {isConference && <p>EVENT TYPE : {formData.eventType}</p>}
+            {isEducation && <p>TOUR TYPE : {formData.tourType}</p>}
             <p>ADULT COUNT : {formData.adultCount}</p>
             {!isConference && <p>CHILD COUNT : {formData.childCount}</p>}
             {isConference && <p>START TIME : {formData.startTime}</p>}

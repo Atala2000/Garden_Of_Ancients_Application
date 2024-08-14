@@ -186,7 +186,7 @@ export const Bookpage = () => {
                         <ArrowRight/>
                     </button>
                 </form>
-                {showModal && <Pricemodal isOpen={showModal} accommodation={formData.accommodation} onClose={handleClose} formData={formData} priceData={formData.price} isConference={isConference}/>}
+                {showModal && <Pricemodal isOpen={showModal} accommodation={formData.accommodation} onClose={handleClose} formData={formData} priceData={formData.price} isConference={isConference} isEducation={isEducation}/>}
             </div>
             {showCart && <Bookmodal isOpen={showModal} bookingData={bookingData}/>}
             <button className='cartbtn' onClick={handleCart}>VIEW CART</button>
