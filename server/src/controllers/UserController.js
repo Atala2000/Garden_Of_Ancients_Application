@@ -2,6 +2,12 @@ import bcrypt from 'bcrypt';
 import Joi from "joi";
 import { calculateTotalPrice } from '../services/calc.services.js';
 import { User } from '../models/models.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import xlsx from 'xlsx';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * Sign up a new user.
@@ -47,6 +53,28 @@ export const SignUp = async (req, res) => {
             totalPrice: calculateTotalPrice([]) // Pass an empty array initially
         };
     }
+
+    const excelPath = path.join(__dirname, '../../data/data.xlsx');
+    const workbook = xlsx.readFile(excelPath);
+    
+    
+   const userData = await User.findAll({
+    attributes : ['id', 'email', 'phone_no', 'password', 'admin']
+   });
+
+   const userJson = userData.map(user => ({
+    id : user.id,
+    email : user.email,
+    phone_no : user.phone_no,
+    password : user.password,
+    admin : user.admin
+   }));
+
+   const worksheet =xlsx.utils.json_to_sheet(userJson);
+
+    workbook.Sheets['User'] = worksheet;
+    xlsx.writeFile(workbook, excelPath);
+
     res.status(200).json({ 'message': 'User registered successfully', useremail : req.session });
 
 }
@@ -113,11 +141,23 @@ export const Logout = async (req, res) => {
     });
 }
 
-export const CheckSession = (req, res) => {
+export const CheckSession = async (req, res) => {
     console.log(req.session)
 
     if(req.session && req.session.useremail){
-        res.json({ isAuthenticated : true, useremail : req.session.useremail})
+        const user = await User.findOne({
+            where : {
+                email : req.session.useremail
+            },
+            attributes : ['admin']
+        });
+
+        if(user && user.admin){
+            res.json({isAuthenticated : true, isAdmin : true, useremail : req.session.useremail})
+        }
+        else{
+        res.json({ isAuthenticated : true, isAdmin : false, useremail : req.session.useremail})
+        }
     }
     else{
         res.json({isAuthenticated : false})

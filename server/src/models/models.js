@@ -21,6 +21,7 @@ const User = sequelize.define("User", {
   email: { type: DataTypes.STRING, allowNull: false, unique: true },
   phone_no: { type: DataTypes.BIGINT, allowNull: true },
   password: { type: DataTypes.STRING, allowNull: false },
+  admin : {type : DataTypes.BOOLEAN, allowNull: true, defaultValue : false }
 });
 
 const Rooms = sequelize.define("Rooms", {
@@ -59,9 +60,12 @@ const PaymentHistory = sequelize.define("PaymentHistory", {
   time: { type: DataTypes.FLOAT, allowNull: true }
 });
 
+
+
 (async () => {
   await sequelize.sync(); // Sync all defined models to the database
   console.log('All models were synchronized successfully.');
+  
 }
 )();
 
