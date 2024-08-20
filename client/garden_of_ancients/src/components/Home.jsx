@@ -12,6 +12,7 @@ import { Footer } from "./Footer";
 import '../assets/css/Home.css'
 import { Heading } from "./Heading";
 import { Account } from "./Account";
+import { Excel } from "./Excel";
 
 export const Home = () => {
 
@@ -23,6 +24,7 @@ export const Home = () => {
                     <div>
                 <h1 className="home-heading">Garden of Ancients</h1>
                 <h2 className="sub-head">Resort</h2>
+                <Excel/>
                 </div>
                 <Account/>
                 </div>

@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 export const Authprovider = ({children}) => {
     const [isAuthenticated, setIsAuthneticated] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -15,14 +16,15 @@ export const Authprovider = ({children}) => {
             });
             const data = await response.json();
             setIsAuthneticated(data.isAuthenticated);
-            console.log('isAuthenticated:', data.isAuthenticated);
+            setIsAdmin(data.isAdmin);
+            console.log('isAuthenticated:', data.isAuthenticated, '  isAdmin :' , data.isAdmin);
             setIsLoading(false);
         }
         checkSession();
     }, []);
 
     return(
-        <AuthContext.Provider value={{isAuthenticated, isLoading}}>
+        <AuthContext.Provider value={{isAuthenticated, isLoading, isAdmin}}>
             {children}
         </AuthContext.Provider>
     )

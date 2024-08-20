@@ -1,0 +1,75 @@
+@font-face {
+    font-family: 'Seasons';
+    src: url('../fonts/The\ Seasons\ Bold.ttf') format('truetype'),
+         url('../fonts/The\ Seasons\ Bold.woff') format('woff'),
+         url('../fonts/The\ Seasons\ Bold.woff2') format('woff2');
+
+         font-style: normal;
+}
+
+.excel-page{
+    background-color: #217346;
+    min-height: 100vh;
+}
+
+.excel-content{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    width: 100%;
+    top: 58%;
+}
+
+.excel-title{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.excel-heading{
+    font-family: "Seasons", sans-serif;
+    font-size: 65px;
+    color: white;
+    margin-left: 25px;
+    margin-bottom: 0;
+}
+
+.sub-head{
+    font-family: "Seasons", sans-serif;
+    font-size: 40px;
+    color: white;
+    margin-left: 25px;
+    text-align: center;
+    margin-top: 0;
+}
+
+.excel-form{
+    background-color: darkslategrey;
+    padding: 15px;
+}
+
+.excel-form button{
+    border-radius: 0;
+}
+
+.excel-form button:hover{
+    background-color: black;
+    color: white;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    border-radius: 0;
+}
+
+.excel-dload{
+    border-radius: 0;
+}
+
+.excel-dload:hover{
+    background-color: black;
+    color: white;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    border-radius: 0;
+}

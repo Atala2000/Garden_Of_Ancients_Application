@@ -11,6 +11,7 @@ import { Bookpage } from './components/bookPage.jsx'
 import { Errormessage } from './components/404.jsx'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useAuth } from './components/Authprovider.jsx'
+import { ExcelPage } from './components/ExcelPage.jsx'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,6 +27,7 @@ function App() {
         <Route path='/Herbarium' element = {<Herbarium/>}/>
         <Route path='/Hives' element = {<Hives/>}/>
         <Route path='/bookPage' element = {isAuthenticated ? <Bookpage/> : <Home/>}/>
+        <Route path='/ExcelPage' element = {<ExcelPage/>}/>
         <Route path='/404Error' element = {<Errormessage/>}/>
       </Routes>
     </BrowserRouter> 
