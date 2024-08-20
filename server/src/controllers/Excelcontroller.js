@@ -115,3 +115,13 @@ export const UploadExcel = async(req, res) => {
     res.status(200).send("File uploaded");
 
 }
+
+export const DownloadExcel =  (req, res) => {
+    const filePath = path.join(__dirname, '../../data/data.xlsx');
+    res.download(filePath, 'data.xlsx', (err) => {
+        console.log(err);
+        if(!res.headersSent){
+        res.status(500).send("Error downloading file");
+        }
+    })
+}
