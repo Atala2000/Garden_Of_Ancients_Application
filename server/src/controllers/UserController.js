@@ -56,26 +56,26 @@ export const SignUp = async (req, res) => {
 
     const excelPath = path.join(__dirname, '../../data/data.xlsx');
     const workbook = xlsx.readFile(excelPath);
-    
-    
-   const userData = await User.findAll({
-    attributes : ['id', 'email', 'phone_no', 'password', 'admin']
-   });
 
-   const userJson = userData.map(user => ({
-    id : user.id,
-    email : user.email,
-    phone_no : user.phone_no,
-    password : user.password,
-    admin : user.admin
-   }));
 
-   const worksheet =xlsx.utils.json_to_sheet(userJson);
+    const userData = await User.findAll({
+        attributes: ['id', 'email', 'phone_no', 'password', 'admin']
+    });
+
+    const userJson = userData.map(user => ({
+        id: user.id,
+        email: user.email,
+        phone_no: user.phone_no,
+        password: user.password,
+        admin: user.admin
+    }));
+
+    const worksheet = xlsx.utils.json_to_sheet(userJson);
 
     workbook.Sheets['User'] = worksheet;
     xlsx.writeFile(workbook, excelPath);
 
-    res.status(200).json({ 'message': 'User registered successfully', useremail : req.session });
+    res.status(200).json({ 'message': 'User registered successfully', useremail: req.session });
 
 }
 
@@ -121,7 +121,7 @@ export const Login = async (req, res) => {
             totalPrice: calculateTotalPrice([]) // Pass an empty array initially
         };
     }
-    res.status(200).json({ "message": "User logged in successfully!", useremail : req.session });
+    res.status(200).json({ "message": "User logged in successfully!", useremail: req.session });
 
 }
 
@@ -144,23 +144,23 @@ export const Logout = async (req, res) => {
 export const CheckSession = async (req, res) => {
     console.log(req.session)
 
-    if(req.session && req.session.useremail){
+    if (req.session && req.session.useremail) {
         const user = await User.findOne({
-            where : {
-                email : req.session.useremail
+            where: {
+                email: req.session.useremail
             },
-            attributes : ['admin']
+            attributes: ['admin']
         });
 
-        if(user && user.admin){
-            res.json({isAuthenticated : true, isAdmin : true, useremail : req.session.useremail})
+        if (user && user.admin) {
+            res.json({ isAuthenticated: true, isAdmin: true, useremail: req.session.useremail })
         }
-        else{
-        res.json({ isAuthenticated : true, isAdmin : false, useremail : req.session.useremail})
+        else {
+            res.json({ isAuthenticated: true, isAdmin: false, useremail: req.session.useremail })
         }
     }
-    else{
-        res.json({isAuthenticated : false})
+    else {
+        res.json({ isAuthenticated: false })
     }
 }
 
@@ -193,9 +193,9 @@ export const SessionCart = (req, res) => {
         accommodation: Joi.string().required(),
         adultCount: Joi.number().required(),
         childCount: Joi.number(),
-        conDate : Joi.date(),
-        startDate : Joi.date(),
-        endDate : Joi.date(),
+        conDate: Joi.date(),
+        startDate: Joi.date(),
+        endDate: Joi.date(),
         period: Joi.number().required(),
         price: Joi.number().required()
     });
@@ -227,47 +227,48 @@ export const viewSession = (req, res) => {
     res.status(200).send(req.session)
 }
 
-export const GetDates = async(req, res) => {
+export const GetDates = async (req, res) => {
     console.log("started");
     const memb = req.session.useremail;
     const dates = await PaymentHistory.findAll({
-        where : {
-            email : memb
+        where: {
+            email: memb
         },
-        attributes : ['startDate', 'endDate']
+        attributes: ['startDate', 'endDate']
     });
-    if(dates.length === 0){
+    if (dates.length === 0) {
         console.log("no dates found");
-        return res.status(200).json({message : 'No dates found'});
+        return res.status(200).json({ message: 'No dates found' });
     }
-    
+
     const formattedDates = dates.map(date => ({
-        startDate : date.startDate,
-        endDate : date.endDate
+        startDate: date.startDate,
+        endDate: date.endDate
     }));
     console.log(formattedDates);
 
     res.status(200).json(formattedDates);
 }
 
-export const History = async(req, res) => {
-    const paymentEntry = req.session.sessionCart.currentCart;
+export const History = async (req, res) => {
+    let paymentEntry = req.session.sessionCart.currentCart;
 
-    for(const item of paymentEntry){
+    for (const item of paymentEntry) {
         await PaymentHistory.create({
-            email : item.user,
-            amount : item.price,
-            startDate : item.startDate,
-            endDate : item.endDate,
-            startTime : item.startTime,
-            endTime : item.endTime,
-            period : item.period
+            email: item.user,
+            amount: item.price,
+            startDate: item.startDate,
+            endDate: item.endDate,
+            startTime: item.startTime,
+            endTime: item.endTime,
+            period: item.period
         });
     }
 
     paymentEntry = [];
+    req.session.sessionCart.currentCart = [];
     res.status(202).json({
-        response : 'Payment History Updated'
+        response: 'Payment History Updated'
     });
 
 }

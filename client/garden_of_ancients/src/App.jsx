@@ -12,6 +12,7 @@ import { Errormessage } from './components/404.jsx'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useAuth } from './components/Authprovider.jsx'
 import { ExcelPage } from './components/ExcelPage.jsx'
+import { Success } from './components/PaymentSuccess.jsx'  
 
 function App() {
   const [count, setCount] = useState(0);
@@ -29,6 +30,7 @@ function App() {
         <Route path='/bookPage' element = {isAuthenticated ? <Bookpage/> : <Home/>}/>
         <Route path='/ExcelPage' element = {<ExcelPage/>}/>
         <Route path='/404Error' element = {<Errormessage/>}/>
+        <Route path='/success-order' element = {<Success/>}/>
       </Routes>
     </BrowserRouter> 
   )

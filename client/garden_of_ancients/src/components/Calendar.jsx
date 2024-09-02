@@ -34,7 +34,7 @@ export const DateCalendar = ({onChange}) => {
     }
 
     const tileDisabled = ({date, view}) => {
-        if(view === 'month'){
+        if(view === 'month' && coveredDates.length > 0){
             return isCoveredDates(date);
         }
         return false;
