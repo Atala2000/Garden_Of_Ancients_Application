@@ -71,12 +71,14 @@
 }
 
 .date-count{
-    display: flex;
-    justify-content: center;
     text-align: center;
     height: 50px;
-    width: 225px;
+    width: 180px;
     background-color: #947f57;
+}
+
+.date-count input{
+    height: 92%;
 }
 
 .people-pos{

@@ -12,6 +12,7 @@ import differenceInDays from 'date-fns/differenceInDays';
 import differenceInHours from 'date-fns/differenceInHours';
 import { Bookmodal } from './bookModal'
 import {format} from 'date-fns';
+import { DateCalendar } from './Calendar'
 
 export const Bookpage = () => {
     const todayDate = () => {
@@ -19,6 +20,8 @@ export const Bookpage = () => {
     }
 
     const [showCart, setShowCart] = useState(false);
+    const [showCalendar, setShowCalendar] = useState(false);
+    const [showEndCalender, setShowEndCalendar] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [bookingData, setBookingData] = useState({
         cart : [],
@@ -159,14 +162,16 @@ export const Bookpage = () => {
                     </select>}
                     {isConference || isEducation ? <div className='date-count'>
                         <label htmlFor="start-date"></label>
-                        <input type="date" id='start-date' value={formData.startDate} onChange={handleChange} name='startDate' required/>
+                        <input type="text" id='start-date' readOnly placeholder='Select Start Date' value={formData.startDate} onChange={handleChange} name='startDate' onClick={() => setShowCalendar(!showCalendar)} required/><br/>
+                        {showCalendar && <DateCalendar onChange={(date) => {setFormData({...formData, startDate : format(date, 'yyyy-MM-dd')}); setShowCalendar(false)}}/>}
                     </div>: <div className='people-count'>
                         <label htmlFor="child-count" className='people-pos'>CHILDREN</label>
                         <input type="number" id='child-count' className='people-pos' name='childCount' value={formData.childCount} onChange={handleChange} min='0' max='15' required/>
                     </div>}
                     {(isConference || isEducation) && (<div className='date-count'>
 <label htmlFor="end-date"></label>
-<input type="date" id='end-date' value={formData.endDate} onChange={handleChange} name='endDate' required/>
+<input type="text" id='end-date' value={formData.endDate} onChange={handleChange} placeholder='Select End Date' onClick={() => setShowEndCalendar(!showEndCalender)} readOnly name='endDate' required/><br/>
+{showEndCalender && <DateCalendar onChange={(date) => {setFormData({...formData, endDate : format(date, 'yyyy-MM-dd')}); setShowEndCalendar(false)}}/>}
 </div>)}
                     {isConference || isEducation ? <div className='date-count'>
 <label htmlFor="start-time"></label>

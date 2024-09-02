@@ -36,7 +36,7 @@
     margin-bottom: 0;
 }
 
-.sub-head{
+.sub-excel{
     font-family: "Seasons", sans-serif;
     font-size: 40px;
     color: white;
@@ -52,6 +52,7 @@
 
 .excel-form button{
     border-radius: 0;
+    border: none;
 }
 
 .excel-form button:hover{

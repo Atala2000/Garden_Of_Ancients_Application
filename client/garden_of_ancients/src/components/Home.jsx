@@ -22,8 +22,8 @@ export const Home = () => {
                 <Navbar/>
                 <div style={{display : "flex"}}>
                     <div>
-                <h1 className="home-heading">Garden of Ancients</h1>
-                <h2 className="sub-head">Resort</h2>
+                <h1 className="home-heading">Tsosy Garden of Ancients</h1>
+                <h2 className="sub-head">Fusion of Recreation and Conservation</h2>
                 <Excel/>
                 </div>
                 <Account/>

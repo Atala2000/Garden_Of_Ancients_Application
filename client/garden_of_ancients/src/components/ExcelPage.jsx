@@ -52,7 +52,7 @@ export const ExcelPage = () => {
         <div className="excel-page">
             <div className="excel-title">
              <h1 className="excel-heading">Garden of Ancients</h1>
-                <h2 className="sub-head">Excel Page</h2>
+                <h2 className="sub-excel">Excel Page</h2>
                 </div>
             <div className="excel-content">
                 <div className="form-div">
