@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import Joi from "joi";
 import { calculateTotalPrice } from '../services/calc.services.js';
-import { User } from '../models/models.js';
+import { PaymentHistory, User } from '../models/models.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import xlsx from 'xlsx';
@@ -225,4 +225,49 @@ export const Viewcart = (req, res) => {
 
 export const viewSession = (req, res) => {
     res.status(200).send(req.session)
+}
+
+export const GetDates = async(req, res) => {
+    console.log("started");
+    const memb = req.session.useremail;
+    const dates = await PaymentHistory.findAll({
+        where : {
+            email : memb
+        },
+        attributes : ['startDate', 'endDate']
+    });
+    if(dates.length === 0){
+        console.log("no dates found");
+        return res.status(200).json({message : 'No dates found'});
+    }
+    
+    const formattedDates = dates.map(date => ({
+        startDate : date.startDate,
+        endDate : date.endDate
+    }));
+    console.log(formattedDates);
+
+    res.status(200).json(formattedDates);
+}
+
+export const History = async(req, res) => {
+    const paymentEntry = req.session.sessionCart.currentCart;
+
+    for(const item of paymentEntry){
+        await PaymentHistory.create({
+            email : item.user,
+            amount : item.price,
+            startDate : item.startDate,
+            endDate : item.endDate,
+            startTime : item.startTime,
+            endTime : item.endTime,
+            period : item.period
+        });
+    }
+
+    paymentEntry = [];
+    res.status(202).json({
+        response : 'Payment History Updated'
+    });
+
 }
