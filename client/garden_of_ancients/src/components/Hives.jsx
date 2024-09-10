@@ -4,7 +4,7 @@ import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { Booking } from "./Booking";
 import { Heading } from "./Heading";
-import imageURL from '../assets/bees.jpg';
+import imageURL from '../assets/bee.jpeg';
 import "../assets/css/Hives.css";
 
 export const Hives = () => {
