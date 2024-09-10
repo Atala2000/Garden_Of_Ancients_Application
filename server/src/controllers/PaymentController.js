@@ -4,7 +4,7 @@ import { PaymentHistory } from "../models/models.js";
 export const createOrderController = async (req, res) => {
     try {
         const orderData = await createOrder(req.session.sessionCart.totalPrice, req.session.sessionCart.currentCart);
-        res.json(orderData);
+        res.status(200).json(orderData);
     } catch (error) {
         console.error('Error creating order:', error);
         res.status(500).send('Error creating order');

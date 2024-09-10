@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../fonts/Quicksand.ttf') format('truetype'),
+         url('../fonts/Quicksand.woff') format('woff'),
+         url('../fonts/Quicksand.woff2') format('woff2');
+
+         font-style: normal;
+}
+
+.mid-herb{
+    height: 650px;
+    width: 100%;
+    display: flex;
+}
+
+.herb-par{
+    height: 100%;
+    width: 50%;
+    border-bottom: 1px solid white;
+    box-shadow: 2px 2px 10px rgba(200, 200, 200, 0.5);
+}
+
+.herb-par h1{
+    margin-top: 200px;
+    margin-left: 30px;
+    font-family: 'Seasons', sans-serif;
+}
+
+.herb-par p{
+    margin-left: 30px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.herb-pic{
+    height: 100%;
+    width: 50%;
+    background-image: url('../singlebed.webp');
+    background-size: cover;
+}

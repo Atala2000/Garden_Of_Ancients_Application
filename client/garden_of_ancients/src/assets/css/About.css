@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'Seasons';
+    src: url('../fonts/The Seasons Bold.ttf') format('truetype'),
+         url('../fonts/The Seasons Bold.woff') format('woff'),
+         url('../fonts/The Seasons Bold.woff2') format('woff2');
+
+         font-style: normal;
+}
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../fonts/Quicksand.ttf') format('truetype'),
+         url('../fonts/Quicksand.woff') format('woff'),
+         url('../fonts/Quicksand.woff2') format('woff2');
+
+         font-style: normal;
+}
+
+.about-body{
+    width: 80%;
+    transform: translateX(-50%);
+    margin-left: 50%;
+    margin-bottom: 100px;
+}
+
+.about-head{
+    margin-top: 60px;
+    font-size: 32px;
+    font-family: 'Seasons', sans-serif;
+    font-weight: 700;
+    text-align: center;
+}
+
+.aboutpage-body{
+    margin-top: 60px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+}

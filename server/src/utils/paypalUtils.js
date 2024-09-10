@@ -1,7 +1,7 @@
 import { btoa } from 'buffer'; // Assuming Node.js environment
 import process from 'process';
 import fetch from 'node-fetch';
-import dotenv  from 'dotenv';
+import dotenv from 'dotenv';
 dotenv.config();
 
 
@@ -82,15 +82,15 @@ const createOrder = async (totalAmount, cart) => {
               value: totalAmount.toFixed(2),
               breakdown: {
                 item_total: {
-                    currency_code: "USD",
-                    value: totalAmount.toFixed(2)
+                  currency_code: "USD",
+                  value: totalAmount.toFixed(2)
                 }
               }
             }
           }
         ],
         application_context: {
-          return_url: 'http://localhost:3000/complete-order',
+          return_url: 'http://localhost:5173/success-order',
           cancel_url: 'http://localhost:3000/cancel-order',
           user_action: 'PAY_NOW',
           "shipping_preference": "NO_SHIPPING"
