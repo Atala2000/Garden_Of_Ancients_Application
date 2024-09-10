@@ -251,7 +251,7 @@ export const GetDates = async(req, res) => {
 }
 
 export const History = async(req, res) => {
-    const paymentEntry = req.session.sessionCart.currentCart;
+    let paymentEntry = req.session.sessionCart.currentCart;
 
     for(const item of paymentEntry){
         await PaymentHistory.create({
@@ -266,6 +266,7 @@ export const History = async(req, res) => {
     }
 
     paymentEntry = [];
+    req.session.sessionCart.current = [];
     res.status(202).json({
         response : 'Payment History Updated'
     });
