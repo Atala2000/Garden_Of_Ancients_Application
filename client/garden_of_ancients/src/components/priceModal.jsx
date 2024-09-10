@@ -1,8 +1,9 @@
-import React from "react"
+import React, {useRef} from "react"
 import '../assets/css/priceModal.css'
 
-export const Pricemodal = ({isOpen, onClose, formData, priceData, accommodation, isConference, isEducation}) => { 
+export const Pricemodal = ({isOpen, onClose, isClosed, formData, priceData, accommodation, isConference, isEducation}) => { 
     
+    const modalRef = useRef(null);
 
 const dayCheck = () => {
     if(formData.period > 1){
@@ -23,7 +24,8 @@ const hourCheck = () => {
 }
 
     return(
-        <div className="modal">
+        <div className="price-overlay" onClick={isClosed}>
+        <div className="modal" ref={modalRef} onClick={(e) => e.stopPropagation()}>
             <p>ACCOMODATION : {formData.accommodation}</p>
             {isConference && <p>EVENT TYPE : {formData.eventType}</p>}
             {isEducation && <p>TOUR TYPE : {formData.tourType}</p>}
@@ -37,6 +39,7 @@ const hourCheck = () => {
             {isConference && <p>TIME ALLOCATED : {formData.periodTime} {hourCheck()}</p>}
             <p className="modal-price">PRICE : {priceData} Ksh</p>
             <button onClick={onClose} className="modal-btn">ADD TO CART</button>
+        </div>
         </div>
     )
 }

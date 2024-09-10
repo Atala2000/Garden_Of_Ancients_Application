@@ -128,6 +128,10 @@ export const Bookpage = () => {
         console.log(bookingData);
     }
 
+    const closeCartModal = () => {
+        setShowModal(false);
+    }
+
     const isConference = formData.accommodation === 'Conference';
     const isEducation = formData.accommodation === 'Education';
 
@@ -178,22 +182,25 @@ export const Bookpage = () => {
 <input type="time" id='start-time' value={formData.startTime} onChange={handleChange} name='startTime' required/>
 </div> : <div className='date-count'>
 <label htmlFor="start-date"></label>
-<input type="date" id='start-date' value={formData.startDate} onChange={handleChange} name='startDate' required/>
+<input type="text" id='start-date' value={formData.startDate} onChange={handleChange} placeholder='Select Start Date' readOnly onClick={() => {setShowCalendar(!showCalendar)}} name='startDate' required/>
+{showCalendar && <DateCalendar onChange={(date) => {setFormData({...formData, startDate : format(date, 'yyyy-MM-dd')}); setShowCalendar(false)}}/>}
 </div>}
                     {isConference || isEducation ? <div className='date-count'>
 <label htmlFor="end-time"></label>
 <input type="time" id='end-time' value={formData.endTime} onChange={handleChange} name='endTime' required/>
 </div> : <div className='date-count'>
 <label htmlFor="end-date"></label>
-<input type="date" id='end-date' value={formData.endDate} onChange={handleChange} name='endDate' required/>
+<input type="text" id='end-date' value={formData.endDate} onChange={handleChange} onClick={() => {setShowEndCalendar(!showEndCalender)}} readOnly placeholder='Select End Date' name='endDate' required/>
+{showEndCalender && <DateCalendar onChange={(date) => {setFormData({...formData, endDate : format(date, 'yyyy-MM-dd')}); setShowEndCalendar(false)}}/>}
 </div>}
                     <button type='submit' className='submit-btn' onClick={handleSubmit}>
                         <ArrowRight/>
                     </button>
                 </form>
-                {showModal && <Pricemodal isOpen={showModal} accommodation={formData.accommodation} onClose={handleClose} formData={formData} priceData={formData.price} isConference={isConference} isEducation={isEducation}/>}
+                
             </div>
-            {showCart && <Bookmodal isOpen={showModal} bookingData={bookingData}/>}
+            {showModal && <Pricemodal isOpen={showModal} accommodation={formData.accommodation} onClose={handleClose} formData={formData} priceData={formData.price} isConference={isConference} isEducation={isEducation} isClosed={() => {setShowModal(false)}}/>}
+            {showCart && <Bookmodal isOpen={showModal} isClosed={() => {setShowCart(false)}} bookingData={bookingData}/>}
             <button className='cartbtn' onClick={handleCart}>VIEW CART</button>
         </Hero>
         <div>

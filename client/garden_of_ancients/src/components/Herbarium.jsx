@@ -1,9 +1,19 @@
 import React, {Component} from "react";
+import { Hero } from "./Hero";
+import { Footer } from "./Footer";
+import { Navbar } from "./Navbar";
+import { Booking } from "./Booking";
+import { Heading } from "./Heading";
 
 export const Herbarium = () => {
     return(
         <>
-        <h1>Herbarium Test</h1>
+        <Hero>
+            <Navbar/>
+            <Heading Text='Spice Enclave'/>
+            <Booking/>
+        </Hero>
+        <Footer/>
         </>
     )
 }

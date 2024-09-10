@@ -18,14 +18,14 @@
 }
 
 .navbar a{
-    color: black;
+    color: white;
     font-size: 19px;
     font-family: 'Quicksand', sans-serif;
 }
 
 .navbar a:hover{
-    color: black;
-    border-bottom: 1.5px solid black;
+    color: white;
+    border-bottom: 1.5px solid white;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }

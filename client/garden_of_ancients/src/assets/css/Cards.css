@@ -15,7 +15,9 @@
 }
 
 .card-pic{
+    background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
     height: 242px;
     width: 100%;
 }

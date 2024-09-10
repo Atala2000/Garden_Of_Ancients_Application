@@ -1,10 +1,18 @@
-import react from 'react';
+import react, {useRef, useEffect} from 'react';
 import '../assets/css/Bookmodal.css';
 
 
 export const Bookmodal = ({isOpen, isClosed, bookingData}) => {
+
+    const modalRef = useRef(null);
+    
     return(
-        <div className='book-cart table-responsive' id='book-cart'>
+        <div className='modal-overlay' onClick={(e) => {
+            if (modalRef.current && !modalRef.current.contains(e.target)) {
+              isClosed();
+            }
+          }}>
+        <div className='book-cart table-responsive' id='book-cart' ref={modalRef} onClick={(e) => e.stopPropagation}>
             <table className='table table-striped'>
                 <thead className=''>
                     <tr>
@@ -30,6 +38,7 @@ export const Bookmodal = ({isOpen, isClosed, bookingData}) => {
                 </tbody>
             </table>
             <p className="total-price">PRICE : {bookingData.totalPrice} Ksh</p>
+        </div>
         </div>
     )
 }

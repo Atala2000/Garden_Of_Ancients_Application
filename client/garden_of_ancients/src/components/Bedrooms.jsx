@@ -2,9 +2,11 @@ import React, {Component} from "react";
 import { Hero } from "./Hero";
 import { Navbar } from "./Navbar";
 import { Booking } from "./Booking";
-import imageURL from "../assets/bedroom.jpeg";
-import cardOne from '../assets/realsingle.webp';
-import cardTwo from '../assets/doublebed.jpeg';
+import imageURL from "../assets/room1.jpeg";
+import cardOne from '../assets/room3.jpeg';
+import cardTwo from '../assets/camping.jpeg';
+import cardThree from '../assets/recreation.jpeg';
+import cardFour from '../assets/Tour.jpeg';
 import '../assets/css/Bedrooms.css'
 import { Heading } from "./Heading";
 import { Cards } from "./Cards";
@@ -25,8 +27,8 @@ export const Bedrooms = () => {
 <div className="card-collection">
 <Cards cardImage={cardOne} cardHead="Bedroom" cardPar="Unwind in our havens of tranquility. Explore the unique features and amenities offered by each bedroom category, designed to cater to your every need."></Cards>
 <Cards cardImage={cardTwo} cardHead="Camping" cardPar="Host a productive and memorable gathering in our state-of-the-art conference rooms. Exceptional services available"></Cards>
-<Cards cardImage={cardTwo} cardHead="Picnic" cardPar="Host a productive and memorable gathering in our state-of-the-art conference rooms. Exceptional services available"></Cards>
-<Cards cardImage={cardTwo} cardHead="Educational Tours" cardPar="Host a productive and memorable gathering in our state-of-the-art conference rooms. Exceptional services available"></Cards>
+<Cards cardImage={cardThree} cardHead="Picnic" cardPar="Host a productive and memorable gathering in our state-of-the-art conference rooms. Exceptional services available"></Cards>
+<Cards cardImage={cardFour} cardHead="Educational Tours" cardPar="Host a productive and memorable gathering in our state-of-the-art conference rooms. Exceptional services available"></Cards>
 </div>
         </div>
         <Footer/>
