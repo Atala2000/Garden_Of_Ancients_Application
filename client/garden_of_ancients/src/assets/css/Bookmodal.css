@@ -1,19 +1,20 @@
-.book-cart{
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    text-align: center;
-    height: 300px;
-    width: 900px;
-    background-color: white;
-    transform: translateX(-50%);
-    margin-left: 60%;
-    margin-top: 100px;
-    z-index: 1001;
+.book-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: auto; /* Let the height adjust based on content */
+  width: 90%; /* Responsive width */
+  max-width: 900px; /* Limit the max width */
+  background-color: white;
+  padding: 20px; /* Add some padding */
+  border-radius: 10px; /* Round the corners */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow */
+  position: relative; /* Not absolute for better centering */
 }
 
-.modal-overlay{
-    position: fixed;
+.modal-overlay {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -23,4 +24,47 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+}
+
+.table {
+  width: 100%; /* Table takes full width of modal */
+  margin-bottom: 20px;
+}
+
+.total-price {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.payment__options {
+  display: flex;
+  gap: 15px; /* Space between buttons */
+  justify-content: center;
+}
+
+.payment__options .btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px; /* Rounded buttons */
+}
+
+.payment__options .btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.payment__options .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.payment__options .btn-danger {
+  background-color: #35dc35;
+  color: white;
+  border: none;
+}
+
+.payment__options .btn-danger:hover {
+  background-color: #c82333;
 }

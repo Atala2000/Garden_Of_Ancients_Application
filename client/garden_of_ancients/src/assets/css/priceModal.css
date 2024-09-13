@@ -1,54 +1,12 @@
 @font-face {
-    font-family: 'Quicksand';
-    src: url('../fonts/Quicksand.ttf') format('truetype'),
-         url('../fonts/Quicksand.woff') format('woff'),
-         url('../fonts/Quicksand.woff2') format('woff2');
-
-         font-style: normal;
-}
-
-.modal{
-    display: flex;
-    position: absolute;
-    z-index: 1001;
-    flex-direction: column;
-    text-align: center;
-    height: 320px;
-    width: 400px;
-    background-color: white;
-    transform: translateX(-50%);
-    margin-left: 50%;
-    margin-top: 250px;
-}
-
-.modal p{
-    font-family: 'Quicksand', sans-serif;
-    margin: 0;
-}
-
-.modal-btn{
-    height: 40px;
-    width: 150px;
-    background-color: #947f57;
-    margin-top: auto;
-    border: none;
-    transform: translateX(-50%);
-    margin-left: 50%;
-    margin-bottom: 15px;
-}
-
-.modal-btn:hover{
-    color: white;
-    background-color: black;
-}
-
-.modal-price{
-    margin-top: 30px;
-    font-size: 30px;
-    font-weight: 200;
-}
-
-.price-overlay{
+    font-family: "Quicksand";
+    src: url("../fonts/Quicksand.ttf") format("truetype"),
+         url("../fonts/Quicksand.woff") format("woff"),
+         url("../fonts/Quicksand.woff2") format("woff2");
+    font-style: normal;
+  }
+  
+  .price-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -56,4 +14,58 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
-}
+    backdrop-filter: blur(10px); /* Apply blur to overlay */
+  }
+  
+  .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    text-align: left; /* Make text inside modal left-aligned */
+  }
+  
+  
+  
+  .modal p {
+    font-family: "Quicksand", sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: left; /* Left-align text inside paragraphs */
+    width: 100%; /* Ensure full-width alignment */
+  }
+  .modal-btn {
+    height: 45px;
+    width: 160px;
+    background-color: #947f57;
+    margin-top: auto;
+    border: none;
+    border-radius: 25px; /* Round button */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-btn:hover {
+    background-color: black;
+  }
+  
+  .modal-price {
+    text-align: left; /* Left-align price text as well */
+    width: 100%;
+  }
+  

@@ -73,4 +73,4 @@ const processPayment = async (phone, amount) => {
     }
 }
 
-export {getAccessToken, processPayment}
+export { getAccessToken, processPayment }
