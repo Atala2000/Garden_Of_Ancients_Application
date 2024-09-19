@@ -1,7 +1,7 @@
 import express from "express";
 import { calcPrice } from "../controllers/PriceController.js";
 import { Login, Logout, SessionCart, SignUp, viewSession, CheckSession, Viewcart, GetDates, History } from "../controllers/UserController.js";
-import { captureOrderController, createOrderController, getPaymentHistory } from "../controllers/PaymentController.js";
+import { captureOrderController, createOrderController, getPaymentHistory, MpesaPayment } from "../controllers/PaymentController.js";
 import { UploadExcel, upload, DownloadExcel } from "../controllers/Excelcontroller.js";
 
 
@@ -18,6 +18,7 @@ router.get('/session', viewSession);
 router.post('/postCart', SessionCart);
 router.post('/createOrder', createOrderController);
 router.post('/captureOrder', captureOrderController);
+router.post('/MpesaPayment', MpesaPayment);
 router.get('/getPaymentHistory', getPaymentHistory);
 router.get('/getHistory', History);
 router.post('/uploadExcel', upload.single('file'), UploadExcel);

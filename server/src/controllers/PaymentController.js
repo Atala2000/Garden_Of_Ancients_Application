@@ -1,4 +1,6 @@
 import { captureOrder, createOrder } from "../utils/paypalUtils.js";
+import { processPayment } from "../utils/mpesaUtils.js";
+
 import { PaymentHistory } from "../models/models.js";
 
 export const createOrderController = async (req, res) => {
@@ -46,3 +48,16 @@ export const getPaymentHistory = async (req, res) => {
 
     res.status(200).json(userPayments);
 }
+
+export const MpesaPayment = async (req, res) => {
+    const { phone, amount } = req.body;
+
+    try {
+        const paymentData = await processPayment(phone, amount);
+        res.status(200).json(paymentData);
+    } catch (error) {
+        console.error('Error processing payment:', error);
+        res.status(500).send('Error processing payment');
+    }
+}
+
