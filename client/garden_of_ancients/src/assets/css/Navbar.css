@@ -30,3 +30,39 @@
     transition: all 0.3s ease-in-out;
 }
 
+@media (max-width : 800px){
+    .navbar{
+        max-width: 90%;
+    }
+    .navbar a{
+        font-size: 16px;
+    }
+}
+
+@media (min-width : 801px) and (max-width : 1024px){
+    .navbar{
+        max-width: 85%;
+    }
+    .navbar a{
+        font-size: 20px;
+    }
+}
+
+@media (min-width : 1025px) and (max-width : 1280px){
+    .navbar{
+        max-width: 85%;
+    }
+    .navbar a{
+        font-size: 20px;
+    }
+}
+
+@media (min-width : 1281px) and (max-width : 1360px){
+    .navbar{
+        max-width: 70%;
+    }
+    .navbar a{
+        font-size: 20px;
+    }
+}
+

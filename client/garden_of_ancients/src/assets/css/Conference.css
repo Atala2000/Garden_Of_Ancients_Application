@@ -33,9 +33,17 @@
 .con-paragraph{
     margin-top: 60px;
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     font-family: 'Quicksand', sans-serif;
 }
 
+@media(min-width : 1281px) and (max-width : 1360px){
+    .conference-heading{
+        font-size: 45px;
+    }
+    .con-paragraph{
+        font-size: 20px;
+    }
+}
 

@@ -38,6 +38,7 @@
 .mid-par p{
     margin-left: 30px;
     font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
 }
 
 .mid-pic{
@@ -67,5 +68,43 @@
     color: white;
     margin-left: 25px;
     margin-top: 0;
+}
+
+@media(max-width : 800px){
+    .home-heading{
+        font-size: 46px;
+    }
+    .sub-head{
+        font-size: 30px;
+    }
+    .mid-par h1{
+        font-size: 34px;
+        margin-top: 100px;
+    }
+    .mid-par p{
+        font-size: 16px;
+    }
+}
+
+@media(min-width : 1025px) and (max-width : 1280px){
+    .mid-par p{
+        font-size: 17.5px;
+    }
+}
+
+@media(min-width : 1281px) and (max-width : 1360px){
+    .home-heading{
+        font-size: 60px;
+    }
+    .sub-head{
+        font-size: 40px;
+    }
+    .mid-par h1{
+        font-size: 55px;
+        margin-top: 100px;
+    }
+    .mid-par p{
+        font-size: 20px;
+    }
 }
 

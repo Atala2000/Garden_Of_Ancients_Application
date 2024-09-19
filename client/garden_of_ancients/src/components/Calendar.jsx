@@ -10,7 +10,7 @@ export const DateCalendar = ({onChange}) => {
 
     useEffect(() => {
         const fetchDates = async() => {
-            const res = await fetch('http://localhost:5500/api/getDates', {
+            const res = await fetch('https://192.168.100.10:5500/api/getDates', {
                 method : 'GET',
                 credentials : 'include'
             });

@@ -34,7 +34,16 @@
 .aboutpage-body{
     margin-top: 60px;
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     font-family: 'Quicksand', sans-serif;
+}
+
+@media(min-width : 1281px) and (max-width : 1360px){
+    .about-head{
+        font-size: 45px;
+    }
+    .aboutpage-body{
+        font-size: 20px;
+    }
 }

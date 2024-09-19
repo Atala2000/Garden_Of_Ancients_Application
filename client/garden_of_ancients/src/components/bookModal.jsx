@@ -9,7 +9,7 @@ export const Bookmodal = ({ isOpen, isClosed, bookingData }) => {
 
     const handlePayPalPayment = async () => {
         try {
-            const response = await fetch('http://localhost:5500/api/createOrder', {
+            const response = await fetch('https://192.168.100.10:5500/api/createOrder', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

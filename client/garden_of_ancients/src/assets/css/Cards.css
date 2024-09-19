@@ -59,5 +59,44 @@
     margin-left: 150px;
 }
 
+@media(max-width : 800px){
+    .card-style{
+        max-width: 270px;
+        min-width: 270px;
+        margin-bottom: 20px;
+    }
+    .card-collection{
+        margin-left: 55px;
+        max-width: 90%;
+        gap: 12px;
+    }
+    .card-par{
+        font-size: 15px;
+    }
+    .card-head{
+        font-size: 17px;
+    }
+}
+
+@media (min-width : 801px) and (max-width : 1024px){
+    .card-collection{
+        margin-left: 50px;
+        gap: 12px;
+        max-width: 90%;
+    }
+    .card-style{
+        min-width: 350px;
+        max-width: 350px;
+    }
+}
+
+@media(min-width : 1281px) and (max-width : 1360px){
+    .card-head{
+        font-size: 23px;
+    }
+    .card-par{
+        font-size: 19px;
+    }
+}
 
 
