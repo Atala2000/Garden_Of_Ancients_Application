@@ -7,9 +7,15 @@ import cors from 'cors';
 import cookieparser from 'cookie-parser'
 import path from 'path';
 import { fileURLToPath } from 'url';
+import https from 'https';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const options = {
+    key : fs.readFileSync('./cert/localhost-key.pem'),
+    cert : fs.readFileSync('./cert/localhost.pem')
+}
 
 console.log(process.env.PAYPAL_API);
 const app = express();
@@ -20,13 +26,13 @@ app.use(session({
     cookie: {
         maxAge: 1000 * 60 * 60, // 1 hour
         httpOnly: true,
-        secure: false, // set to true in production with HTTPS
-        sameSite: 'lax'
+        secure: true, // set to true in production with HTTPS
+        sameSite: 'none'
     }
 }))
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://192.168.100.10:5173',
     credentials: true
 }));
 
@@ -37,7 +43,8 @@ app.use('/api', calcPriceRouter);
 
 
 
-const PORT = process.env.PORT || 5500;
-app.listen(PORT, () => {
-    console.log("Port "+PORT+" is doing just fine!!");
-});
+https.createServer(options, app).listen(5500, () => {
+    console.log("Port 5500 is doing just fine!");
+    console.log(path.resolve(__dirname, './cert/localhost-key.pem'));
+console.log(path.resolve(__dirname, './cert/localhost.pem'));
+})
