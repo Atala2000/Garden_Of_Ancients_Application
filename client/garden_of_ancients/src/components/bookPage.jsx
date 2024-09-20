@@ -66,6 +66,67 @@ export const Bookpage = () => {
     
     const handleSubmit = async(e) => {
         e.preventDefault();
+
+        const form = e.target.closest('form');
+       if(!form.reportValidity()){
+        return;
+       }
+       if(formData.accommodation === ''){
+        return;
+       }
+       if(formData.accommodation === 'Conference'){
+        if(formData.adultCount === 0){
+            return;
+        }
+        if(formData.eventType === ''){
+            return;
+        }
+        if(formData.startDate === ''){
+            return;
+        }
+        if(formData.endDate === ''){
+            return;
+        }
+        if(formData.startTime === ''){
+            return;
+        }
+        if(formData.endTime === ''){
+            return;
+        }
+       }
+       
+       if(formData.accommodation === 'Room'){
+        if(!formData.adultCount > 0){
+            return;
+        }
+        if(formData.startDate === ''){
+            return;
+        }
+        if(formData.endDate === ''){
+            return;
+        }
+       }
+       if(formData.accommodation === 'Education'){
+        if(formData.accommodation === 0){
+            return;
+        }
+        if(formData.tourType === ''){
+            return;
+        }
+        if(formData.startDate === ''){
+            return;
+        }
+        if(formData.endDate === ''){
+            return;
+        }
+        if(formData.startTime === ''){
+            return;
+        }
+        if(formData.endTime === ''){
+            return;
+        }
+       }
+
         setShowModal(true);
         formData.adultCount = parseInt(formData.adultCount);
         formData.childCount = parseInt(formData.childCount);
@@ -80,7 +141,7 @@ export const Bookpage = () => {
         }
         console.log(JSON.stringify(updatedData));
 
-        const response = await fetch('http://localhost:5500/api/getPrices', {
+        const response = await fetch('https://192.168.100.10:5500/api/getPrices', {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify(updatedData)
@@ -100,7 +161,7 @@ export const Bookpage = () => {
         const updatedData = {...formData};
         delete updatedData.startDate;
         delete updatedData.endDate;
-        const response = await fetch('http://localhost:5500/api/postCart', {
+        const response = await fetch('https://192.168.100.10:5500/api/postCart', {
             method : 'POST',
             headers : {'Content-Type' : 'application/json'},
             body : JSON.stringify(formData),
@@ -116,7 +177,7 @@ export const Bookpage = () => {
 
     const handleCart = async() => {
         setShowCart(true);
-        const response = await fetch('http://localhost:5500/api/viewCart', {
+        const response = await fetch('https://192.168.100.10:5500/api/viewCart', {
             method : 'GET',
             credentials : 'include'
         });

@@ -33,7 +33,16 @@
 .bed-body{
     margin-top: 60px;
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     font-family: 'Quicksand', sans-serif;
+}
+
+@media(min-width : 1281px) and (max-width : 1360px){
+    .bed-head{
+        font-size: 45px;
+    }
+    .bed-body{
+        font-size: 20px;
+    }
 }

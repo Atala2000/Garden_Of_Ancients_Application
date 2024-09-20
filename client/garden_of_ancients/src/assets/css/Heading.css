@@ -25,6 +25,31 @@
    margin-top: 0;
 }
 
+@media(max-width : 800px){
+   .heading-style{
+      font-size: 48px;
+      margin-top: 140px;
+   }
+}
+
+@media (min-width : 801px) and (max-width : 1024px){
+   .heading-style{
+      margin-top: 180px;
+   }
+}
+
+@media (min-width : 1025px) and (max-width : 1280px){
+   .heading-style{
+      margin-top: 120px;
+   }
+}
+
+@media(min-width : 1281px) and (max-width : 1360px){
+   .heading-style{
+      font-size: 75px;
+   }
+}
+
 
 
 

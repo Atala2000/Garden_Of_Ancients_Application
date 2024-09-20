@@ -8,15 +8,15 @@ export const Bookmodal = ({ isOpen, isClosed, bookingData }) => {
   
   const params = "scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000";
 
-  const handlePayPalPayment = async () => {
-    try {
-      const response = await fetch('http://localhost:5500/api/createOrder', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include', // Include session data
-      });
+    const handlePayPalPayment = async () => {
+        try {
+            const response = await fetch('https://192.168.100.10:5500/api/createOrder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include', // This is important to include session data
+            });
 
       if (!response.ok) {
         throw new Error('Failed to create order');

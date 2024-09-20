@@ -6,7 +6,7 @@ export const Success = () => {
     useEffect(() => {
         const checkPaymentStatus = async () => {
             try {
-                const response = await fetch('http://localhost:5500/api/getHistory', {
+                const response = await fetch('https://192.168.100.10:5500/api/getHistory', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

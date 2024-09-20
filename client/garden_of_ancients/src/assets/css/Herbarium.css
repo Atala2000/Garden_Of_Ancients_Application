@@ -29,6 +29,7 @@
 .herb-par p{
     margin-left: 30px;
     font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
 }
 
 .herb-pic{
@@ -36,4 +37,31 @@
     width: 50%;
     background-image: url('../singlebed.webp');
     background-size: cover;
+}
+
+@media(max-width : 800px){
+    .herb-par h1{
+        font-size: 34px;
+        margin-top: 100px;
+    }
+    .herb-par p{
+        font-size: 16px;
+    }
+}
+
+@media(min-width : 1025px) and (max-width : 1280px){
+    .herb-par p{
+        font-size: 17.5px;
+    }
+}
+
+
+@media(min-width :1281px) and (max-width : 1360px){
+    .herb-par h1{
+        font-size: 55px;
+        margin-top: 100px;
+    }
+    .herb-par p{
+        font-size: 20px;
+    }
 }

@@ -71,3 +71,82 @@ font-family: 'Quicksand', sans-serif;
 .availability h4{
     font-weight: bolder;
 }
+
+@media(max-width : 800px){
+    .title h2{
+        font-size: 25px;
+    }
+    .address{
+        font-size: 15px;
+    }
+    .availability{
+        font-size: 15px;
+    }
+    .footer .socials a svg{
+        width: 30px;
+        height: 30px;
+    }
+    .socials{
+        width: 200px;
+    }
+    .footer-container{
+        width: 95%;
+    }
+   
+}
+
+@media (min-width : 801px) and (max-width : 1024px){
+    .footer-container{
+        width: 85%;
+    }
+    .availability{
+        font-size: 19px;
+    }
+    .address{
+        font-size: 19px;
+    }
+}
+
+@media (min-width : 1025px) and (max-width : 1280px){
+    .footer-container{
+        width: 80%;
+    }
+    .address{
+        font-size: 17px;
+    }
+    .availability{
+        font-size: 17px;
+    }
+    .title h2{
+        font-size: 35px;
+    }
+    .footer .socials a svg {
+        width: 40px;
+        height: 40px;
+    }
+    .socials{
+        width: 270px;
+    }
+}
+
+@media(min-width : 1281px) and (max-width : 1360px){
+    .footer-container{
+        width: 75%;
+    }
+    .title h2{
+        font-size: 42px;
+    }
+    .footer .socials a svg{
+        width: 40px;
+        height: 40px;
+    }
+    .socials{
+        width: 260px;
+    }
+    .address{
+        font-size: 19px;
+    }
+    .availability{
+        font-size: 19px;
+    }
+}

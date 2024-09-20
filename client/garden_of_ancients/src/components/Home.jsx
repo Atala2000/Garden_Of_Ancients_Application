@@ -47,7 +47,7 @@ export const Home = () => {
         <>
             <Hero style={homeStyle}>
                 <Navbar/>
-                <div style={{display : "flex"}}>
+                <div className="main-hero" style={{display : "flex"}}>
                     <div className="head-div" style={headDivStyle}>
                 <h1 className="home-heading">Tsosy Garden of Ancients</h1>
                 <h2 className="sub-head">Fusion of Recreation and Conservation</h2>

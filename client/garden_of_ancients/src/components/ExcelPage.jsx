@@ -18,7 +18,7 @@ export const ExcelPage = () => {
         const formData = new FormData();
         formData.append("file", file);
 
-        const response = await fetch('http://localhost:5500/api/uploadExcel', {
+        const response = await fetch('https://192.168.100.10:5500/api/uploadExcel', {
             method : 'POST',
             body : formData,
             credentials : 'include'
@@ -29,7 +29,7 @@ export const ExcelPage = () => {
     }
 
     const handleDownload = async () => {
-        const response = await fetch('http://localhost:5500/api/downloadExcel', {
+        const response = await fetch('https://192.168.100.10:5500/api/downloadExcel', {
             method: 'GET',
             credentials: 'include'
         });
