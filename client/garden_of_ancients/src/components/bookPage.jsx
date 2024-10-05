@@ -139,6 +139,13 @@ export const Bookpage = () => {
         else if(formData.accommodation === 'Education'){
             delete updatedData.eventType;
         }
+        else if(formData.accommodation === 'Room'){
+            delete updatedData.eventType;
+            delete updatedData.tourType;
+            delete updatedData.startTime;
+            delete updatedData.endTime;
+            delete updatedData.periodTime;
+        }
         console.log(JSON.stringify(updatedData));
 
         const response = await fetch('https://192.168.100.10:5500/api/getPrices', {
