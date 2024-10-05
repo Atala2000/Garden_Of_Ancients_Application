@@ -50,10 +50,11 @@ export const getPaymentHistory = async (req, res) => {
 }
 
 export const MpesaPayment = async (req, res) => {
-    const { phone, amount } = req.body;
+
+    const { phone_no } = req.body;
 
     try {
-        const paymentData = await processPayment(phone, amount);
+        const paymentData = await processPayment(phone_no, req.session.sessionCart.totalPrice);
         res.status(200).json(paymentData);
     } catch (error) {
         console.error('Error processing payment:', error);
