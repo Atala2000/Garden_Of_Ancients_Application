@@ -26,25 +26,20 @@ app.use(session({
     cookie: {
         maxAge: 1000 * 60 * 60, // 1 hour
         httpOnly: true,
-        secure: true, // set to true in production with HTTPS
-        sameSite: 'none'
+        secure: false, // set to true in production with HTTPS
+        sameSite: 'lax'
     }
 }))
 app.use(express.json());
 app.use(cors({
-    origin: 'https://192.168.100.10:5173',
+    origin: 'http://localhost:5173',
     credentials: true
 }));
 
 
 app.use('/api', calcPriceRouter);
 
-
-
-
-
-https.createServer(options, app).listen(5500, () => {
-    console.log("Port 5500 is doing just fine!");
-    console.log(path.resolve(__dirname, './cert/localhost-key.pem'));
-console.log(path.resolve(__dirname, './cert/localhost.pem'));
+const port = process.env.PORT || 5500;
+app.listen(port, () => {
+    console.log("Port "+port+" is doing just fine!")
 })

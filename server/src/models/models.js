@@ -1,7 +1,9 @@
 import { Sequelize, DataTypes } from "sequelize";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const sequelize = new Sequelize(
-  "mysql://kiddie:StrongPass123!@localhost:3306/goa"
+  "	mysql://kiddie:StrongPass123!@localhost:3306/goa"
 );
 
 /*const test = async () => {
@@ -19,7 +21,7 @@ test();*/
 
 const User = sequelize.define("User", {
   email: { type: DataTypes.STRING, allowNull: false, unique: true },
-  phone_no: { type: DataTypes.BIGINT, allowNull: true },
+  phone_no: { type: DataTypes.STRING, allowNull: true },
   password: { type: DataTypes.STRING, allowNull: false },
   admin: { type: DataTypes.BOOLEAN, allowNull: true, defaultValue: false }
 });
