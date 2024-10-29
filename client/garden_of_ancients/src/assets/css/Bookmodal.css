@@ -30,6 +30,7 @@
 }
 
 .table {
+  color: black;
   width: 100%;
   margin-bottom: 20px;
 }
@@ -38,6 +39,7 @@
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  color: black;
 }
 
 .payment__options {
@@ -88,10 +90,12 @@
 .mpesa-modal h2 {
   font-size: 22px;
   margin-bottom: 10px;
+  color: black;
 }
 
 .mpesa-modal p {
   margin-bottom: 20px;
+  color: black;
 }
 
 .mpesa-modal input {
@@ -162,5 +166,23 @@
 @media(min-width : 1281px) and (max-width : 1366px){
   .book-cart{
     margin-left: 0;
+  }
+}
+
+@media(max-width : 450px){
+  .book-cart{
+    width: 380px;
+    transform: translateX(-50%);
+    left: 50vw;
+    top: 10%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .modal-overlay{
+    display: block;
+  }
+  .mpesa-modal{top: 12%;}
+  .table{
+    width: 100%;
   }
 }

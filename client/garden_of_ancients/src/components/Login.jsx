@@ -9,8 +9,8 @@ export const Login = ({setShowComponent}) => {
     });
 
     const handleSubmit = async(e) => {
-        
-        const response = await fetch("https://192.168.100.10:5500/api/login", {
+        e.preventDefault();
+        const response = await fetch("http://localhost:5500/api/login", {
             method : 'POST', 
             headers : {"Content-Type" : "application/json"},
             credentials : 'include',
@@ -20,6 +20,7 @@ export const Login = ({setShowComponent}) => {
         if(!response.ok){
             console.log("Login Failed", data);
         }
+        window.location.reload();
     }
 
     const handleChange = (e) => {

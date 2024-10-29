@@ -23,6 +23,15 @@ const hourCheck = () => {
     }
 }
 
+const periodCheck = () => {
+if(formData.accommodation !== 'Room'){
+    return formData.period + 1;
+}
+else{
+    return formData.period;
+}
+}
+
     return(
         <div className="price-overlay" onClick={isClosed}>
         <div className="modal" ref={modalRef} onClick={(e) => e.stopPropagation()}>
@@ -35,7 +44,7 @@ const hourCheck = () => {
             {isConference && <p>END TIME : {formData.endTime}</p>}
             <p>START DATE : {formData.startDate}</p>
             <p>END DATE : {formData.endDate}</p>
-            <p>PERIOD : {formData.period} {dayCheck()}</p>
+            <p>PERIOD : {periodCheck()} {dayCheck()}</p>
             {isConference && <p>TIME ALLOCATED : {formData.periodTime} {hourCheck()}</p>}
             <p className="modal-price">PRICE : {priceData} Ksh</p>
             <button onClick={onClose} className="modal-btn">ADD TO CART</button>

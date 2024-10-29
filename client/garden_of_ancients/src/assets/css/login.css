@@ -13,6 +13,8 @@ height: 40px;
 width: 300px;
 margin-left: 50%;
 margin-top: 10px;
+background-color: white;
+border: none;
 }
 
 .login-submit{

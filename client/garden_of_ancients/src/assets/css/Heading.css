@@ -11,14 +11,15 @@
    transform: translateX(-25%);
    margin-left: 25%;
    margin-top: 160px;
-   font-size: 65px;
+   font-size: 55px;
    font-family: 'Seasons', sans-serif;
    color: white;
 }
 
 .sub-style{
-   font-family: 'Seasons', sans-serif;
-   font-size: 40px;
+   font-style: italic;
+   font-weight: 100;
+   font-size: 30px;
    color: white;
    transform: translateX(-25%);
    margin-left: 25%;
@@ -47,6 +48,19 @@
 @media(min-width : 1281px) and (max-width : 1360px){
    .heading-style{
       font-size: 75px;
+   }
+}
+
+@media(max-width : 450px){
+   .heading-style{
+      font-size: 26px;
+      margin-top: 60px;
+      transform: translateX(-50%);
+      margin-left: 50%;
+      text-align: center;
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
    }
 }
 

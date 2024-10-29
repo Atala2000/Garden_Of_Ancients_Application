@@ -1,10 +1,65 @@
 .date-calendar{
-    position: absolute;
+    position: fixed;
+    color: black;
     height: 350px;
     width: 500px;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    z-index: 9999;
 }
 
 .react-calendar{
     height: 100%;
     width: 100%;
+}
+
+
+.react-calendar__tile{
+    color: black;
+}
+
+.react-calendar__navigation__prev-button{
+    color: black;
+}
+
+.react-calendar__navigation__next-button{
+    color: black;
+}
+
+.react-calendar__navigation__prev2-button{
+    color: black;
+}
+
+.react-calendar__navigation__next2-button{
+    color: black;
+}
+
+.react-calendar__navigation__label{
+    color: black;
+}
+
+.date-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(10px); 
+}
+
+@media(max-width : 450px){
+    .date-calendar{
+        color: black;
+        width: 325px;
+        top: 40%;
+    }
+    .react-calendar{
+        color: black;
+    }
+    .date-overlay{
+        width: 100vw;
+    }
 }

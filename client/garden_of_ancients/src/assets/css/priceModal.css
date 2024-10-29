@@ -94,3 +94,13 @@
         margin-top: 0;
     }
 }
+
+@media(max-width : 450px){
+  .modal{
+    width: 325px;
+    transform: translateX(-50%);
+    left: 50vw;
+    top: 10%;
+    color: black;
+  }
+}

@@ -28,7 +28,7 @@ export const Footer = () => {
                 <p>Nyamira, Kenya<br/>
                 PO Box 1753 00502
                 </p>
-                <p>0710943451</p>
+                <p>+254 710943451</p>
                 <p>info.gardenofancients@co.ke</p>
             </div>
             <div className="availability">
@@ -37,7 +37,7 @@ export const Footer = () => {
                 9.00am to 5.00pm
                 </p>
                 <p>Saturday<br/>
-                9.00am to 12.00pm
+                9.00am to 2.00pm
                 </p>
             </div>
             </div>

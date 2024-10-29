@@ -14,7 +14,11 @@ import { Footer } from "./Footer";
 import '../assets/css/Home.css'
 import { Heading } from "./Heading";
 import { Account } from "./Account";
+import { useLayoutEffect } from "react";
 import { Excel } from "./Excel";
+import { Logout } from "./Logout";
+import { useNavigate } from "react-router-dom";
+import { List } from "react-bootstrap-icons";
 import { useAuth } from "./Authprovider";
 
 export const Home = () => {
@@ -22,6 +26,7 @@ export const Home = () => {
     const {isAuthenticated, setIsAuthenticated} = useAuth();
     const [accountStyle, setAccountStyle] = useState({});
     const [headDivStyle, setHeadDiveStyle] = useState({});
+    const [loginStatus, setLoginStatus] = useState(false);
 
     const homeStyle = {
         backgroundImage : `url(${enclavePic}) , url(${conPic}), url(${roomPic})`,
@@ -30,47 +35,89 @@ export const Home = () => {
         backgroundRepeat : 'no-repeat'
     }
 
+    const navigate = useNavigate();
+    const recCard = () => {
+        navigate('/Bedrooms');
+        window.scrollTo(0, 0);
+    }
+    const conCard = () => {
+        navigate('/Conferences');
+        window.scrollTo(0, 0);
+    }
+    const herbCard = () => {
+        navigate('/Herbarium');
+        window.scrollTo(0, 0);
+    }
+    const hiveCard = () => {
+        navigate('/Hives');
+        window.scrollTo(0, 0);
+    }
+
 
     useEffect(() => {
         const checkAccount = () => {
-            if(isAuthenticated){
-                setHeadDiveStyle({width : '100%', textAlign : 'center', marginLeft : '0' });
-            }
-            else{
-                setHeadDiveStyle({maxWidth : '50%'});
+            if (isAuthenticated) {
+                setHeadDiveStyle({ width: '100%', textAlign: 'center', marginLeft: '0' });
+                console.log("Style set: Authenticated");
+            } else if (!isAuthenticated && window.innerWidth > 450) {
+                setHeadDiveStyle({ maxWidth: '50%' });
+                console.log("Style set: Not Authenticated, Width > 425");
+            } else if (!isAuthenticated && window.innerWidth <= 450) {
+                setHeadDiveStyle({ width: '100%', textAlign: 'center', marginLeft: '0' });
+                console.log("Style set: Not Authenticated, Width <= 425");
             }
         }
         checkAccount();
+        const handleResize = () => {
+            checkAccount();
+          };
+        
+          window.addEventListener('resize', handleResize);
+        
+          return () => {
+            window.removeEventListener('resize', handleResize);
+          };
     }, [isAuthenticated])
+
+    let loginStyle ={};
+    if(loginStatus){
+        loginStyle = {display : 'block'}
+    }
+    else if(!loginStatus && window.innerWidth <= 450){
+        loginStyle = {display : 'none'}
+    }
 
     return(
         <>
             <Hero style={homeStyle}>
+                
                 <Navbar/>
-                <div className="main-hero" style={{display : "flex"}}>
+                <div className="main-hero">
                     <div className="head-div" style={headDivStyle}>
                 <h1 className="home-heading">Tsosy Garden of Ancients</h1>
                 <h2 className="sub-head">Fusion of Recreation and Conservation</h2>
                 <Excel/>
+                <Logout/>
                 </div>
-                <Account/>
+                <Account loginDisplay={loginStyle}/>
                 </div>
+                {!isAuthenticated && window.innerWidth < 450 && <p onClick={() => {setLoginStatus(!loginStatus)}} className="login-toggle">Log in to access book page</p>}
                 <Booking/>
             </Hero>
             <div className="home-body">
                 <div className="mid-home">
                     <div className="mid-par">
-                        <h1>Unveiling the Legacy: A Story Steeped in History</h1>
+                        <h1>Unveiling the Legacy:</h1>
                         <p>Discover the rich history and philosophy behind our unique resort. Immerse yourself in a timeless haven where nature and tranquility reign supreme. Learn about our commitment to sustainability and cultural preservation.</p>
                     </div>
                     <div className="mid-pic"></div>
                 </div>
                 <h1 className="heading-card">What We Offer</h1>
                 <div className="card-collection">
-                <Cards cardImage={cardOne} cardHead="Recreation" cardPar="Unwind in our havens of tranquility. Explore the unique features and amenities offered by each bedroom category, designed to cater to your every need."></Cards>
-                <Cards cardImage={cardTwo} cardHead="Events" cardPar="Host a productive and memorable gathering in our state-of-the-art conference rooms. Exceptional services available"></Cards>
-                <Cards cardImage={cardThree} cardHead="Spice Enclave" cardPar="Embark on a fragrant journey through our meticulously curated herbarium. Discover a world of medicinal and culinary plants, and delve into their historical and practical uses."></Cards>
-                <Cards cardImage={cardFour} cardHead="Bee Garden" cardPar="Witness the fascinating world of beekeeping firsthand. Learn about our commitment to sustainable practices and the honey produced by our resident bees."></Cards>
+                <Cards cardLink={recCard} cardImage={cardOne} cardHead="Recreation" cardPar="With the tranquility around here, it is a place to relax around with friends and family..."></Cards>
+                <Cards cardLink={conCard} cardImage={cardTwo} cardHead="Events" cardPar="Nested in this mini ‘rain forest’ is a conference facility equipped with modern facilities to cater for your needs..."></Cards>
+                <Cards cardLink={herbCard} cardImage={cardThree} cardHead="Spice Enclave" cardPar="Almost everyone loves good spiced food. Most people love herbal drinks. Experience the many spices grown in the Spice Enclave within this Garden..."></Cards>
+                <Cards cardLink={hiveCard} cardImage={cardFour} cardHead="Bee Garden" cardPar="Kept in a well secluded place within the Tsosy Garden of Ancients is a Bee Garden, comprising open beehives of different types and a bee house..."></Cards>
                 </div>
             </div>
             <Footer/>

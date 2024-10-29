@@ -12,10 +12,7 @@ const __dirname = path.dirname(__filename)
 export default defineConfig({
   plugins: [react()],
   server: {
-    https: {
-      key: fs.readFileSync(path.join(__dirname, './cert/localhost-key.pem')),
-      cert: fs.readFileSync(path.join(__dirname, './cert/localhost.pem')),
-    },
+   
     host: '0.0.0.0', // If you need other devices to access it
     port: 5173, // Customize the port if necessary
     cors: true // Enable CORS

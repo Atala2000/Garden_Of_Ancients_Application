@@ -16,6 +16,20 @@
          font-style: normal;
 }
 
+:root{
+    background-color: white !important;
+    color: black !important;
+}
+
+.main-hero{
+    display: flex;
+    z-index: 50;
+}
+
+.home-body{
+    height: auto;
+}
+
 .mid-home{
     height: 650px;
     width: 100%;
@@ -56,26 +70,35 @@
 
 .home-heading{
     font-family: "Seasons", sans-serif;
-    font-size: 65px;
+    font-size: 55px;
     color: white;
     margin-left: 25px;
     margin-bottom: 0;
 }
 
 .sub-head{
-    font-family: "Seasons", sans-serif;
-    font-size: 40px;
+    font-weight: 100;
+    font-size: 30px;
     color: white;
     margin-left: 25px;
     margin-top: 0;
+    font-style: italic;
+}
+
+.login-toggle{
+    transform: translateX(-50%);
+    text-align: center;
+    margin-left: 50%;
+    bottom: 10px;
+    color: white;
 }
 
 @media(max-width : 800px){
     .home-heading{
-        font-size: 46px;
+        font-size: 36px;
     }
     .sub-head{
-        font-size: 30px;
+        font-size: 23px;
     }
     .mid-par h1{
         font-size: 34px;
@@ -87,6 +110,10 @@
 }
 
 @media(min-width : 1025px) and (max-width : 1280px){
+    .home-heading{
+        font-size: 50px;
+    }
+
     .mid-par p{
         font-size: 17.5px;
     }
@@ -94,10 +121,10 @@
 
 @media(min-width : 1281px) and (max-width : 1360px){
     .home-heading{
-        font-size: 60px;
+        font-size: 55px;
     }
     .sub-head{
-        font-size: 40px;
+        font-size: 30px;
     }
     .mid-par h1{
         font-size: 55px;
@@ -108,3 +135,39 @@
     }
 }
 
+@media (max-width : 425px){
+   
+    .main-hero{
+        display: block;
+    }
+    .home-heading{
+        margin-left: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 33px;
+    }
+    .sub-head{
+        margin-left: 0;
+    }
+    .mid-home{
+        display: block;
+    }
+    .mid-par{
+        height: 50%;
+        width: 100%;
+        text-align: center;
+    }
+    .mid-par h1{
+        margin-top: 0;
+        padding-top: 50px;
+        margin-left: 0;
+    }
+    .mid-par p{
+        margin-left: 0;
+        padding: 20px;
+    }
+    .mid-pic{
+        height: 50%;
+        width: 100%;
+    }
+}

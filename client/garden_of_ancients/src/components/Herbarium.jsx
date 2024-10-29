@@ -17,10 +17,15 @@ export const Herbarium = () => {
         </Hero>
         <div className="mid-herb">
                     <div className="herb-par">
-                        <h1>Unveiling the Legacy: A Story Steeped in History</h1>
-                        <p>Discover the rich history and philosophy behind our unique resort. Immerse yourself in a timeless haven where nature and tranquility reign supreme. Learn about our commitment to sustainability and cultural preservation.</p>
+                        <p>Almost everyone loves good spiced food. Most people love herbal drinks. Experience the many spices grown in the Spice Enclave within this Garden. Have you seen how these spices - nutmeg, cloves, cinnamon, mints, vanilla, sage, thymes, and many, many others, look like? And there are many fruit trees you have probably never seen in your life! They are all here in the Spice Enclave! Whether adult or school student, you will benefit greatly from an educational tour in the Spice Enclave. It is a place like no other!</p>
                     </div>
-                    <div className="herb-pic"></div>
+                    <div className="herb-pic">
+                        <div className="herb-pic1"></div>
+                        <div className="herb-flex">
+                            <div className="herb-pic2"></div>
+                            <div className="herb-pic3"></div>
+                        </div>
+                    </div>
                 </div>
         <Footer/>
         </>

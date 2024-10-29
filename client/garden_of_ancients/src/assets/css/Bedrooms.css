@@ -38,11 +38,135 @@
     font-family: 'Quicksand', sans-serif;
 }
 
+.pic-collection{
+    width: 100%;
+    height: 350px;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+
+.hover-text{
+    position: absolute;
+    bottom: -50%;
+    left: 20px;
+    color: white;
+    font-size: 35px;
+    transition: all 0.4s ease;
+    font-family: 'Seasons', sans-serif;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rec-pic1{
+    position: relative;
+    background-image: url('../room3.jpeg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+.rec-pic1::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    transition: background-color 0.4s ease;
+    z-index: 1;
+}
+
+.rec-pic1:hover::before{
+    background-color: rgba(0,0,0,0.7);
+}
+
+.rec-pic1:hover .hover-text{
+    bottom: 10px;
+    opacity: 1;
+}
+
+.rec-pic2{
+    background-image: url('../recreation.jpeg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.rec-pic2::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    transition: background-color 0.4s ease;
+    z-index: 1;
+}
+
+.rec-pic2:hover::before{
+    background-color: rgba(0,0,0,0.7);
+}
+
+.rec-pic2:hover .hover-text{
+    bottom: 10px;
+    opacity: 1;
+}
+
+
+.rec-pic3{
+    background-image: url('../camping.jpeg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.rec-pic3::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    transition: background-color 0.4s ease;
+    z-index: 1;
+}
+
+.rec-pic3:hover::before{
+    background-color: rgba(0,0,0,0.7);
+}
+
+.rec-pic3:hover .hover-text{
+    bottom: 10px;
+    opacity: 1;
+}
+
+
 @media(min-width : 1281px) and (max-width : 1360px){
     .bed-head{
         font-size: 45px;
     }
     .bed-body{
         font-size: 20px;
+    }
+}
+
+@media(max-width : 450px){
+    .pic-collection{
+        height: 500px;
+        flex-direction: column;
+    }
+    .hover-text{
+        bottom: -80%;
+        font-size: 25px;
     }
 }

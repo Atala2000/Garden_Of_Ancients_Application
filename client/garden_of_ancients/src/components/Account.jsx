@@ -4,7 +4,7 @@ import { Signup } from "./Signup";
 import { useAuth } from "./Authprovider";
 import '../assets/css/Account.css'
 
-export const Account = () => {
+export const Account = ({loginDisplay}) => {
     const {isAuthenticated, isLoading} = useAuth();
     const [showComponent, setShowComponent] = useState(false);
 
@@ -20,7 +20,7 @@ export const Account = () => {
     }
 
     return(
-        <div className="account-form">
+        <div className="account-form" style={loginDisplay}>
         {showComponent ? <Signup setShowComponent={setShowComponent}/> : <Login setShowComponent={setShowComponent}/>}
         </div>
     )

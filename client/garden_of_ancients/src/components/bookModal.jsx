@@ -10,7 +10,7 @@ export const Bookmodal = ({ isOpen, isClosed, bookingData }) => {
 
     const handlePayPalPayment = async () => {
         try {
-            const response = await fetch('https://192.168.100.10:5500/api/createOrder', {
+            const response = await fetch('http://localhost:5500/api/createOrder', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export const Bookmodal = ({ isOpen, isClosed, bookingData }) => {
           <table className="table table-striped">
             <thead>
               <tr>
-                <th>Email</th>
+                
                 <th>Accommodation</th>
                 <th>Start Date</th>
                 <th>End Date</th>
@@ -95,7 +95,7 @@ export const Bookmodal = ({ isOpen, isClosed, bookingData }) => {
             <tbody>
               {bookingData.cart.map((booking, index) => (
                 <tr key={index}>
-                  <td>{booking.user}</td>
+                  
                   <td>{booking.accommodation}</td>
                   <td>{booking.startDate}</td>
                   <td>{booking.endDate}</td>

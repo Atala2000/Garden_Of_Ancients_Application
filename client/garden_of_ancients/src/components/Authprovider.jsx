@@ -10,7 +10,7 @@ export const Authprovider = ({children}) => {
 
     useEffect(() => {
         const checkSession = async () => {
-            const response = await fetch('https://192.168.100.10:5500/api/checkSession', {
+            const response = await fetch('http://localhost:5500/api/checkSession', {
                 method : 'GET',
                 credentials : 'include'
             });

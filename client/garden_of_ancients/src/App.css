@@ -2,7 +2,8 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;  
-  width: 100%;   
+  width: 100%;
+  max-width: 1920px;
 }
 
 #root {
@@ -46,5 +47,11 @@ html, body {
 
 .read-the-docs {
   color: #888;
+}
+
+@media (max-width : 425px){
+  body{
+    width: 100%;
+  }
 }
 

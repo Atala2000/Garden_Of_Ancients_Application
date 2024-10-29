@@ -25,6 +25,50 @@
     z-index: 2;
 }
 
+.navbar-burger{
+    position: absolute;
+    color: white;
+    top: 10px;
+    left: 10px;
+    display: none;
+}
+
+.navDropdown{
+    width: 100vw;
+    position: fixed;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.navdrop-close{
+    color: white;
+    position: absolute;
+}
+
+.navdrop-style{
+    list-style: none;
+    color: white;
+    padding: 0;
+    margin-top: 37px;
+    margin-bottom: 0;
+}
+
+.navdrop-style li{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.navdrop-item:hover{
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    transition: all 0.05s ease;
+}
+
 @media (max-width : 800px){
     .myHero{
         width: 100%;
@@ -35,5 +79,14 @@
 @media(min-width : 1025px) and (max-width : 1280px) and (max-height : 600px){
     .myHero{
         height: 100vh;
+    }
+}
+
+@media(max-width : 450px){
+    .myHero{
+        height: 50vh;
+    }
+    .navbar-burger{
+        display: block;
     }
 }

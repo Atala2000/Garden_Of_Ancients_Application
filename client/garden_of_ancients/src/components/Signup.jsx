@@ -13,7 +13,7 @@ export const Signup = ({setShowComponent}) => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         console.log(JSON.stringify(formData));
-        const response = await fetch('http://192.168.100.10:5500/api/signup', {
+        const response = await fetch('http://localhost:5500/api/signup', {
             method : 'POST',
             headers : {'Content-Type' : 'application/json'},
             credentials : 'include',
@@ -24,6 +24,7 @@ export const Signup = ({setShowComponent}) => {
         if(response.ok){
             console.log(signAnswer);
         }
+        window.location.reload();
     }
     
     const handleChange = (e) => {

@@ -4,13 +4,13 @@ import 'react-calendar/dist/Calendar.css';
 import '../assets/css/Calendar.css';
 import { subDays } from "date-fns";
 
-export const DateCalendar = ({onChange}) => {
+export const DateCalendar = ({onChange, isClosed}) => {
 
     const [coveredDates, setCoveredDates] = useState([]);
 
     useEffect(() => {
         const fetchDates = async() => {
-            const res = await fetch('https://192.168.100.10:5500/api/getDates', {
+            const res = await fetch('http://localhost:5500/api/getDates', {
                 method : 'GET',
                 credentials : 'include'
             });
@@ -41,8 +41,10 @@ export const DateCalendar = ({onChange}) => {
     }
 
     return(
+       
         <div className="date-calendar">
             <Calendar tileDisabled={tileDisabled} onChange={onChange}/>
         </div>
+       
     )
 }

@@ -61,6 +61,8 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .address h4{
+    font-family: 'Seasons', sans-serif;
+    font-size: 20px;
     font-weight: bolder;
 }
 
@@ -69,6 +71,8 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .availability h4{
+    font-family: 'Seasons', sans-serif;
+    font-size: 20px;
     font-weight: bolder;
 }
 
@@ -148,5 +152,30 @@ font-family: 'Quicksand', sans-serif;
     }
     .availability{
         font-size: 19px;
+    }
+}
+
+@media(max-width : 450px){
+    .footer-container{
+        display: block;
+    }
+    .title{
+        text-align: center;
+    }
+    .address{
+        margin-top: 25px;
+        text-align: center;
+    }
+    .availability{
+        margin-top: 25px;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+    .footer .socials{
+        transform: translateX(-50%);
+        margin-left: 50%;
+    }
+    .title h2{
+        margin-top: 20px;
     }
 }

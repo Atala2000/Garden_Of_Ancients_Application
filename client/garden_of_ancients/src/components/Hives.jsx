@@ -17,10 +17,15 @@ export const Hives = () => {
         </Hero>
         <div className="mid-herb">
                     <div className="herb-par">
-                        <h1>Unveiling the Legacy: A Story Steeped in History</h1>
-                        <p>Discover the rich history and philosophy behind our unique resort. Immerse yourself in a timeless haven where nature and tranquility reign supreme. Learn about our commitment to sustainability and cultural preservation.</p>
+                        <p>Kept in a well secluded place within the Tsosy Garden of Ancients is a Bee Garden, comprising open beehives of different types and a bee house. You will be able to safely view millions of these important insects, without which our global food production would be in jeopardy. Within close proximity to the Bee Garden are beautiful orchards and flowers from where the bees derive nectar, and whenever available, you will be able to purchase our premium honey, perhaps not found anywhere else on the globe. Why? Here we feed the bees with the best, they in turn feed us with the best honey! Ever heard on how bees communicate? Come and learn it here!</p>
                     </div>
-                    <div className="herb-pic"></div>
+                    <div className="hive-pic">
+                    <div className="hive-pic1"></div>
+                        <div className="hive-flex">
+                            <div className="hive-pic2"></div>
+                            <div className="hive-pic3"></div>
+                        </div>
+                    </div>
                 </div>
         <Footer/>
         </>

@@ -148,7 +148,7 @@ export const Bookpage = () => {
         }
         console.log(JSON.stringify(updatedData));
 
-        const response = await fetch('https://192.168.100.10:5500/api/getPrices', {
+        const response = await fetch('http://localhost:5500/api/getPrices', {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify(updatedData)
@@ -168,7 +168,7 @@ export const Bookpage = () => {
         const updatedData = {...formData};
         delete updatedData.startDate;
         delete updatedData.endDate;
-        const response = await fetch('https://192.168.100.10:5500/api/postCart', {
+        const response = await fetch('http://localhost:5500/api/postCart', {
             method : 'POST',
             headers : {'Content-Type' : 'application/json'},
             body : JSON.stringify(formData),
@@ -184,7 +184,7 @@ export const Bookpage = () => {
 
     const handleCart = async() => {
         setShowCart(true);
-        const response = await fetch('https://192.168.100.10:5500/api/viewCart', {
+        const response = await fetch('http://localhost:5500/api/viewCart', {
             method : 'GET',
             credentials : 'include'
         });
@@ -235,23 +235,25 @@ export const Bookpage = () => {
                     {isConference || isEducation ? <div className='date-count'>
                         <label htmlFor="start-date"></label>
                         <input type="text" id='start-date' readOnly placeholder='Select Start Date' value={formData.startDate} onChange={handleChange} name='startDate' onClick={() => setShowCalendar(!showCalendar)} required/><br/>
-                        {showCalendar && <DateCalendar onChange={(date) => {setFormData({...formData, startDate : format(date, 'yyyy-MM-dd')}); setShowCalendar(false)}}/>}
+                        
                     </div>: <div className='people-count'>
                         <label htmlFor="child-count" className='people-pos'>CHILDREN</label>
                         <input type="number" id='child-count' className='people-pos' name='childCount' value={formData.childCount} onChange={handleChange} min='0' max='15' required/>
                     </div>}
+                    
                     {(isConference || isEducation) && (<div className='date-count'>
 <label htmlFor="end-date"></label>
 <input type="text" id='end-date' value={formData.endDate} onChange={handleChange} placeholder='Select End Date' onClick={() => setShowEndCalendar(!showEndCalender)} readOnly name='endDate' required/><br/>
-{showEndCalender && <DateCalendar onChange={(date) => {setFormData({...formData, endDate : format(date, 'yyyy-MM-dd')}); setShowEndCalendar(false)}}/>}
+
 </div>)}
+
                     {isConference || isEducation ? <div className='date-count'>
 <label htmlFor="start-time"></label>
 <input type="time" id='start-time' value={formData.startTime} onChange={handleChange} name='startTime' required/>
 </div> : <div className='date-count'>
 <label htmlFor="start-date"></label>
 <input type="text" id='start-date' value={formData.startDate} onChange={handleChange} placeholder='Select Start Date' readOnly onClick={() => {setShowCalendar(!showCalendar)}} name='startDate' required/>
-{showCalendar && <DateCalendar onChange={(date) => {setFormData({...formData, startDate : format(date, 'yyyy-MM-dd')}); setShowCalendar(false)}}/>}
+
 </div>}
                     {isConference || isEducation ? <div className='date-count'>
 <label htmlFor="end-time"></label>
@@ -259,7 +261,7 @@ export const Bookpage = () => {
 </div> : <div className='date-count'>
 <label htmlFor="end-date"></label>
 <input type="text" id='end-date' value={formData.endDate} onChange={handleChange} onClick={() => {setShowEndCalendar(!showEndCalender)}} readOnly placeholder='Select End Date' name='endDate' required/>
-{showEndCalender && <DateCalendar onChange={(date) => {setFormData({...formData, endDate : format(date, 'yyyy-MM-dd')}); setShowEndCalendar(false)}}/>}
+
 </div>}
                     <button type='submit' className='submit-btn' onClick={handleSubmit}>
                         <ArrowRight/>
@@ -267,6 +269,8 @@ export const Bookpage = () => {
                 </form>
                 
             </div>
+            {showEndCalender && <DateCalendar isClosed={() => {setShowEndCalendar(false)}} onChange={(date) => {setFormData({...formData, endDate : format(date, 'yyyy-MM-dd')}); setShowEndCalendar(false)}}/>}
+            {showCalendar && <DateCalendar isClosed={() => {setShowCalendar(false)}} onChange={(date) => {setFormData({...formData, startDate : format(date, 'yyyy-MM-dd')}); setShowCalendar(false)}}/>}
             {showModal && <Pricemodal isOpen={showModal} accommodation={formData.accommodation} onClose={handleClose} formData={formData} priceData={formData.price} isConference={isConference} isEducation={isEducation} isClosed={() => {setShowModal(false)}}/>}
             {showCart && <Bookmodal isOpen={showModal} isClosed={() => {setShowCart(false)}} bookingData={bookingData}/>}
             <button className='cartbtn' onClick={handleCart}>VIEW CART</button>

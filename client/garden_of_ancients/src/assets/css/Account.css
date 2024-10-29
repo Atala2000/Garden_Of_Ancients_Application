@@ -6,8 +6,11 @@
     background-color: rgba(148, 127, 87, 0.9);
 }
 
-@media(min-width : 1025px) and (max-width : 1280px){
+@media(max-width : 450px){
     .account-form{
-        
+        margin-left: 0;
+        width: 100vw;
+        height: 30%;
+        position: fixed;
     }
 }
